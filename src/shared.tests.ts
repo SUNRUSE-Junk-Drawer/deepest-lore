@@ -39,6 +39,8 @@ type Source<T> = (
   callback: Callback<T>
 ) => void
 
+type InstanceFactory = (value: any) => any
+
 export function run<T>(
   source: Source<T>,
   test: (
@@ -172,3 +174,42 @@ export const numbers = combinationOf(zeroes, positiveIntegers, negativeIntegers,
 export const nonObjects = combinationOf<string | boolean | null | number | ReadonlyArray<never>>(strings, booleans, nulls, numbers, emptyArrays)
 export const nonArrays = combinationOf(strings, booleans, nulls, numbers, emptyObjects)
 export const nonStrings = combinationOf(booleans, nulls, numbers, emptyArrays, emptyObjects)
+
+export function testIdentifier(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory
+): void {
+  run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory(value)))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value)))
+  run(nonStrings, value => rejects(schema, instanceFactory(value)))
+}
+
+export function testIdentifierSet(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory
+): void {
+  run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory([value])))
+  run(emptyArrays, value => accepts(schema, instanceFactory(value)))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value])))
+  run(nonStrings, value => rejects(schema, instanceFactory([value])))
+  run(nonArrays, value => rejects(schema, instanceFactory(value)))
+  describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
+  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`])))
+}
+
+export function testLocalizedString(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory
+): void {
+  run(nonObjects, value => rejects(schema, instanceFactory(value)))
+  run(emptyObjects, value => accepts(schema, instanceFactory(value)))
+  run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, `Test String`))))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`))))
+  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value))))
+  describe(`multiple strings`, () => accepts(schema, instanceFactory({
+    for_eg: `Test String A`,
+    oth_id: `Test String B`,
+    anther: `Test String C`,
+    lastid: `Test String D`
+  })))
+}
