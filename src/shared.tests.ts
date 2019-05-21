@@ -13,11 +13,23 @@ export function accepts<T>(
 
 export function rejects(
   schema: jsonschema.Schema,
-  instance: any
+  instance: any,
+  property: string,
+  message: string
 ): void {
+  let result: jsonschema.ValidatorResult
+  beforeAll(() => result = jsonschema.validate(instance, schema))
   it(
     `fails validation`,
-    () => expect(jsonschema.validate(instance, schema).errors).not.toEqual([])
+    () => expect(result.errors.length).toEqual(1)
+  )
+  it(
+    `fails validation on the expected property`,
+    () => expect(result.errors[0].property).toEqual(property)
+  )
+  it(
+    `fails validation with the expected message`,
+    () => expect(result.errors[0].message).toEqual(message)
   )
 }
 
@@ -177,35 +189,38 @@ export const nonStrings = combinationOf(booleans, nulls, numbers, emptyArrays, e
 
 export function testIdentifier(
   schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory
+  instanceFactory: InstanceFactory,
+  property: string
 ): void {
   run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value)))
-  run(nonStrings, value => rejects(schema, instanceFactory(value)))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value), property, `does not match pattern "^[_a-z0-9]{6}$"`))
+  run(nonStrings, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) string`))
 }
 
 export function testIdentifierSet(
   schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory
+  instanceFactory: InstanceFactory,
+  property: string
 ): void {
   run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory([value])))
   run(emptyArrays, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value])))
-  run(nonStrings, value => rejects(schema, instanceFactory([value])))
-  run(nonArrays, value => rejects(schema, instanceFactory(value)))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value]), `${property}[0]`, `does not match pattern "^[_a-z0-9]{6}$"`))
+  run(nonStrings, value => rejects(schema, instanceFactory([value]), `${property}[0]`, `is not of a type(s) string`))
+  run(nonArrays, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) array`))
   describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
-  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`])))
+  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`]), property, `contains duplicate item`))
 }
 
 export function testLocalizedString(
   schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory
+  instanceFactory: InstanceFactory,
+  property: string
 ): void {
-  run(nonObjects, value => rejects(schema, instanceFactory(value)))
+  run(nonObjects, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) object`))
   run(emptyObjects, value => accepts(schema, instanceFactory(value)))
   run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, `Test String`))))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`))))
-  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value))))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`)), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
+  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value)), `${property}.for_eg`, `is not of a type(s) string`))
   describe(`multiple strings`, () => accepts(schema, instanceFactory({
     for_eg: `Test String A`,
     oth_id: `Test String B`,
