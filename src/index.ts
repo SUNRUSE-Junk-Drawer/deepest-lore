@@ -12,3 +12,8 @@ export {
   schema as localizedString,
   Type as LocalizedString
 } from "./localized-string"
+
+export {
+  schema as schema,
+  Type as Schema
+} from "./schema"

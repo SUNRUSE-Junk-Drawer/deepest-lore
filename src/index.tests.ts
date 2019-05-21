@@ -2,6 +2,7 @@ import "jasmine"
 import * as identifier from "./identifier"
 import * as identifierSet from "./identifier-set"
 import * as localizedString from "./localized-string"
+import * as schema from "./schema"
 import * as index from "./index"
 
 describe(`index`, () => {
@@ -13,5 +14,8 @@ describe(`index`, () => {
   })
   describe(`localized string`, () => {
     it(`schema`, () => expect(index.localizedString).toBe(localizedString.schema))
+  })
+  describe(`schema`, () => {
+    it(`schema`, () => expect(index.schema).toBe(schema.schema))
   })
 })
