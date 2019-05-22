@@ -35,6 +35,8 @@ apply.
 The base directory to which to export; this will be deleted and replaced with a
 new directory containing the exported HTML.
 
+Watch builds will not be minified.
+
 Uses [@deepest-lore/html-export](https://www.npmjs.com/package/@deepest-lore/html-export).
 
 ## License
