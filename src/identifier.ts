@@ -7,4 +7,7 @@ export const schema: jsonschema.Schema = {
   pattern: `^[_a-z0-9]{6}$`,
 }
 
+/**
+ * An invariant identifier which is usually unique to a set.
+ */
 export type Type = string

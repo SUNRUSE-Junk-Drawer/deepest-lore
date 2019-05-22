@@ -13,6 +13,12 @@ export const schema: jsonschema.Schema = {
   }
 }
 
+/**
+ * Maps localization identifiers to localized strings.
+ */
 export type Type = {
+  /**
+   * A mapping of a localization identifier to a localized string.
+   */
   readonly [localization: string]: string
 }
