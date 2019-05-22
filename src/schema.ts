@@ -21,9 +21,29 @@ export const schema: jsonschema.Schema = {
   }
 }
 
+/**
+ * A deepest-lore schema document.
+ */
 export type Type = {
+  /**
+   * The identifiers of the localizations used within the document.
+   */
   readonly localizations: identifierSet.Type
+
+  /**
+   * Maps localization identifiers to the names of those localizations.
+   */
   readonly localizationName: localizedString.Type
+
+  /**
+   * Maps localization identifiers to the title of the document in those
+   * localizations.
+   */
   readonly title: localizedString.Type
+
+  /**
+   * Maps localization identifiers to the description of the document in those
+   * localizations.
+   */
   readonly description: localizedString.Type
 }
