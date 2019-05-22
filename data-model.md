@@ -24,3 +24,10 @@ and can safely be used for "special" values.
 | `______`             | 0              |
 | `zzzzzz`             | 3780923076     |
 | `for_eg`             | 1704192617     |
+
+## Localizations
+
+Schema documents define a set of localizations, which have identifiers.
+
+Any information which is localized is then specified once per localization,
+keyed by its identifier.
