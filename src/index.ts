@@ -29,6 +29,11 @@ export {
 } from "./entity-reference-column"
 
 export {
+  schema as integerColumn,
+  Type as IntegerColumn
+} from "./integer-column"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
