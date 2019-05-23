@@ -6,6 +6,7 @@ import * as booleanColumn from "./boolean-column"
 import * as stringColumn from "./string-column"
 import * as entityReferenceColumn from "./entity-reference-column"
 import * as integerColumn from "./integer-column"
+import * as floatColumn from "./float-column"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -31,6 +32,9 @@ describe(`index`, () => {
   })
   describe(`integer column`, () => {
     it(`schema`, () => expect(index.integerColumn).toBe(integerColumn.schema))
+  })
+  describe(`float column`, () => {
+    it(`schema`, () => expect(index.floatColumn).toBe(floatColumn.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
