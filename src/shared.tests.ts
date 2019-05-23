@@ -157,12 +157,14 @@ export function zeroes(
 export function positiveIntegers(
   callback: Callback<number>
 ): void {
+  callback(`positive one`, 1)
   callback(`positive integer`, 3)
 }
 
 export function negativeIntegers(
   callback: Callback<number>
 ): void {
+  callback(`negative one`, -1)
   callback(`negative integer`, -3)
 }
 
