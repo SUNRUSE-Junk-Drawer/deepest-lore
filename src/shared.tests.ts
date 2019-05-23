@@ -226,37 +226,42 @@ export const nonFloats = combinationOf(strings, booleans, nulls, emptyArrays, em
 export function testIdentifier(
   schema: jsonschema.Schema,
   instanceFactory: InstanceFactory,
-  property: string
+  property: string,
+  allMessagesReplacedWith?: string
 ): void {
   run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value), property, `does not match pattern "^[_a-z0-9]{6}$"`))
-  run(nonStrings, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) string`))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `does not match pattern "^[_a-z0-9]{6}$"`))
+  run(nonStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) string`))
 }
 
 export function testIdentifierSet(
   schema: jsonschema.Schema,
   instanceFactory: InstanceFactory,
-  property: string
+  property: string,
+  useExactProperty?: boolean,
+  allMessagesReplacedWith?: string
 ): void {
   run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory([value])))
   run(emptyArrays, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value]), `${property}[0]`, `does not match pattern "^[_a-z0-9]{6}$"`))
-  run(nonStrings, value => rejects(schema, instanceFactory([value]), `${property}[0]`, `is not of a type(s) string`))
-  run(nonArrays, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) array`))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value]), useExactProperty ? property : `${property}[0]`, allMessagesReplacedWith || `does not match pattern "^[_a-z0-9]{6}$"`))
+  run(nonStrings, value => rejects(schema, instanceFactory([value]), useExactProperty ? property : `${property}[0]`, allMessagesReplacedWith || `is not of a type(s) string`))
+  run(nonArrays, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) array`))
   describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
-  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`]), property, `contains duplicate item`))
+  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`]), property, allMessagesReplacedWith || `contains duplicate item`))
 }
 
 export function testLocalizedString(
   schema: jsonschema.Schema,
   instanceFactory: InstanceFactory,
-  property: string
+  property: string,
+  useExactProperty?: boolean,
+  allMessagesReplacedWith?: string
 ): void {
-  run(nonObjects, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) object`))
+  run(nonObjects, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) object`))
   run(emptyObjects, value => accepts(schema, instanceFactory(value)))
   run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, `Test String`))))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`)), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value)), `${property}.for_eg`, `is not of a type(s) string`))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`)), property, allMessagesReplacedWith || `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
+  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value)), useExactProperty ? property : `${property}.for_eg`, allMessagesReplacedWith || `is not of a type(s) string`))
   describe(`multiple strings`, () => accepts(schema, instanceFactory({
     for_eg: `Test String A`,
     oth_id: `Test String B`,
