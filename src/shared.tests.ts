@@ -74,6 +74,16 @@ export function combinationOf<T>(
   }
 }
 
+export function setOf(
+  ...strings: ReadonlyArray<string>
+): Source<string> {
+  return (
+    callback: Callback<string>
+  ): void => {
+    strings.forEach(str => callback(str, str))
+  }
+}
+
 export function emptyStrings(
   callback: Callback<identifier.Type>
 ): void {
