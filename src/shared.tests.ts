@@ -214,10 +214,14 @@ export function emptyObjects(
 
 export const strings = combinationOf(emptyStrings, nonEmptyStrings, identifierStrings)
 export const booleans = combinationOf(trues, falses)
-export const numbers = combinationOf(zeroes, positiveIntegers, negativeIntegers, positiveFloats, negativeFloats)
-export const nonObjects = combinationOf<string | boolean | null | number | ReadonlyArray<never>>(strings, booleans, nulls, numbers, emptyArrays)
-export const nonArrays = combinationOf(strings, booleans, nulls, numbers, emptyObjects)
-export const nonStrings = combinationOf(booleans, nulls, numbers, emptyArrays, emptyObjects)
+export const integers = combinationOf(zeroes, positiveIntegers, negativeIntegers)
+export const floats = combinationOf(integers, positiveFloats, negativeFloats)
+export const nonObjects = combinationOf<string | boolean | null | number | ReadonlyArray<never>>(strings, booleans, nulls, floats, emptyArrays)
+export const nonArrays = combinationOf(strings, booleans, nulls, floats, emptyObjects)
+export const nonStrings = combinationOf(booleans, nulls, floats, emptyArrays, emptyObjects)
+export const nonBooleans = combinationOf(strings, nulls, floats, emptyArrays, emptyObjects)
+export const nonIntegers = combinationOf(strings, booleans, nulls, positiveFloats, negativeFloats, emptyArrays, emptyObjects)
+export const nonFloats = combinationOf(strings, booleans, nulls, emptyArrays, emptyObjects)
 
 export function testIdentifier(
   schema: jsonschema.Schema,
