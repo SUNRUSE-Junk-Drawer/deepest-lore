@@ -24,6 +24,11 @@ export {
 } from "./string-column"
 
 export {
+  schema as entityReferenceColumn,
+  Type as EntityReferenceColumn
+} from "./entity-reference-column"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
