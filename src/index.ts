@@ -14,6 +14,11 @@ export {
 } from "./localized-string"
 
 export {
+  schema as booleanColumn,
+  Type as BooleanColumn
+} from "./boolean-column"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
