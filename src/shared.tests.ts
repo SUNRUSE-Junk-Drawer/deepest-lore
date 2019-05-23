@@ -33,6 +33,26 @@ export function rejects(
   )
 }
 
+export function rejectsMany(
+  schema: jsonschema.Schema,
+  instance: any,
+  errors: ReadonlyArray<{
+    readonly property: string
+    readonly message: string
+  }>
+): void {
+  let result: jsonschema.ValidatorResult
+  beforeAll(() => result = jsonschema.validate(instance, schema))
+  it(
+    `returns the expected number of errors`,
+    () => expect(result.errors.length).toEqual(errors.length)
+  )
+  errors.forEach(error => it(
+    `returns all expected errors`,
+    () => expect(result.errors).toContain(jasmine.objectContaining(error))
+  ))
+}
+
 export function keyValue<TValue>(
   key: string,
   value: TValue
