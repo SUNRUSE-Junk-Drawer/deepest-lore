@@ -39,6 +39,11 @@ export {
 } from "./float-column"
 
 export {
+  schema as column,
+  Type as Column
+} from "./column"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
