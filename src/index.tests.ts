@@ -3,6 +3,7 @@ import * as identifier from "./identifier"
 import * as identifierSet from "./identifier-set"
 import * as localizedString from "./localized-string"
 import * as booleanColumn from "./boolean-column"
+import * as stringColumn from "./string-column"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -18,6 +19,9 @@ describe(`index`, () => {
   })
   describe(`boolean column`, () => {
     it(`schema`, () => expect(index.booleanColumn).toBe(booleanColumn.schema))
+  })
+  describe(`string column`, () => {
+    it(`schema`, () => expect(index.stringColumn).toBe(stringColumn.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))

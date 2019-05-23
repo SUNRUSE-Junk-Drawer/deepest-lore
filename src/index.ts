@@ -19,6 +19,11 @@ export {
 } from "./boolean-column"
 
 export {
+  schema as stringColumn,
+  Type as StringColumn
+} from "./string-column"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
