@@ -4,6 +4,7 @@ import * as identifierSet from "./identifier-set"
 import * as localizedString from "./localized-string"
 import * as booleanColumn from "./boolean-column"
 import * as stringColumn from "./string-column"
+import * as entityReferenceColumn from "./entity-reference-column"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -22,6 +23,10 @@ describe(`index`, () => {
   })
   describe(`string column`, () => {
     it(`schema`, () => expect(index.stringColumn).toBe(stringColumn.schema))
+  })
+  describe(`entity reference column`, () => {
+    it(`schema`, () => expect(index.entityReferenceColumn)
+      .toBe(entityReferenceColumn.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
