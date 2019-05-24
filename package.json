@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/fs-import",
   "description": "Imports deepest-lore schemas and data from JSON and CSV files on disk.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "sideEffects": false,
   "repository": {
     "type": "git",
