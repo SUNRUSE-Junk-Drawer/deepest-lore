@@ -23,7 +23,7 @@
     "typescript": "3.4.5"
   },
   "dependencies": {
-    "@deepest-lore/fs-import": "0.0.2",
+    "@deepest-lore/fs-import": "0.0.3",
     "@deepest-lore/fs-import-watch": "0.0.1",
     "@deepest-lore/html-export": "0.0.0"
   },
