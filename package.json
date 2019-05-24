@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@deepest-lore/data-model": "0.0.5",
-    "@deepest-lore/fs-import": "0.0.2",
     "chokidar": "3.0.0"
   },
   "scripts": {
