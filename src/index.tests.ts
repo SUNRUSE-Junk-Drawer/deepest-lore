@@ -8,6 +8,7 @@ import * as entityReferenceColumn from "./entity-reference-column"
 import * as integerColumn from "./integer-column"
 import * as floatColumn from "./float-column"
 import * as column from "./column"
+import * as labelPart from "./label-part"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -39,6 +40,9 @@ describe(`index`, () => {
   })
   describe(`column`, () => {
     it(`schema`, () => expect(index.column).toBe(column.schema))
+  })
+  describe(`label part`, () => {
+    it(`schema`, () => expect(index.labelPart).toBe(labelPart.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
