@@ -820,3 +820,75 @@ export function testLabel(
     [`long_w`, `2thetp`, `wanna_`, `depest`, `lore__`]
   ])))
 }
+
+export function testEntityType(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(
+    schema, instanceFactory(value), property, `is not of a type(s) object`
+  ))
+  describe(`unexpected properties`, () => rejects(
+    schema,
+    instanceFactory({
+      singular: {},
+      plural: {},
+      label: [],
+      columns: {},
+      unexpected: {}
+    }), property, `additionalProperty "unexpected" exists in instance when not allowed`
+  ))
+  describe(`singular`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      plural: {},
+      label: [],
+      columns: {}
+    }), property, `requires property "singular"`))
+    testLocalizedString(schema, value => instanceFactory({
+      singular: value,
+      plural: {},
+      label: [],
+      columns: {},
+    }), `${property}.singular`)
+  })
+  describe(`plural`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      singular: {},
+      label: [],
+      columns: {}
+    }), property, `requires property "plural"`))
+    testLocalizedString(schema, value => instanceFactory({
+      singular: {},
+      plural: value,
+      label: [],
+      columns: {},
+    }), `${property}.plural`)
+  })
+  describe(`label`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      singular: {},
+      plural: {},
+      columns: {}
+    }), property, `requires property "label"`))
+    testLabel(schema, value => instanceFactory({
+      singular: {},
+      plural: {},
+      label: value,
+      columns: {},
+    }), `${property}.label`)
+  })
+  describe(`columns`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      singular: {},
+      plural: {},
+      label: []
+    }), property, `requires property "columns"`))
+    testColumnSet(schema, value => instanceFactory({
+      singular: {},
+      plural: {},
+      label: [],
+      columns: value,
+    }), `${property}.columns`)
+  })
+}
