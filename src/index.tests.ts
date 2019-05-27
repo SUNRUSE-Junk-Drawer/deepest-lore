@@ -11,6 +11,7 @@ import * as column from "./column"
 import * as columnSet from "./column-set"
 import * as labelPart from "./label-part"
 import * as label from "./label"
+import * as entityType from "./entity-type"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -51,6 +52,9 @@ describe(`index`, () => {
   })
   describe(`label`, () => {
     it(`schema`, () => expect(index.label).toBe(label.schema))
+  })
+  describe(`entity type`, () => {
+    it(`schema`, () => expect(index.entityType).toBe(entityType.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
