@@ -54,6 +54,11 @@ export {
 } from "./label-part"
 
 export {
+  schema as label,
+  Type as Label
+} from "./label"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"

@@ -10,6 +10,7 @@ import * as floatColumn from "./float-column"
 import * as column from "./column"
 import * as columnSet from "./column-set"
 import * as labelPart from "./label-part"
+import * as label from "./label"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -47,6 +48,9 @@ describe(`index`, () => {
   })
   describe(`label part`, () => {
     it(`schema`, () => expect(index.labelPart).toBe(labelPart.schema))
+  })
+  describe(`label`, () => {
+    it(`schema`, () => expect(index.label).toBe(label.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
