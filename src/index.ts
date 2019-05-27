@@ -59,6 +59,11 @@ export {
 } from "./label"
 
 export {
+  schema as entityType,
+  Type as EntityType
+} from "./entity-type"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
