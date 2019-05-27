@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/data-model",
   "description": "Markdown documents, JSON schemas and Typescript definitions for the data model of deepest-lore.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "sideEffects": false,
   "repository": {
     "type": "git",
