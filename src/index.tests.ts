@@ -13,6 +13,7 @@ import * as labelPart from "./label-part"
 import * as label from "./label"
 import * as entityType from "./entity-type"
 import * as entityTypeSet from "./entity-type-set"
+import * as mappingKey from "./mapping-key"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -59,6 +60,9 @@ describe(`index`, () => {
   })
   describe(`entity type set`, () => {
     it(`schema`, () => expect(index.entityTypeSet).toBe(entityTypeSet.schema))
+  })
+  describe(`mapping key`, () => {
+    it(`schema`, () => expect(index.mappingKey).toBe(mappingKey.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
