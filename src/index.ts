@@ -69,6 +69,11 @@ export {
 } from "./entity-type-set"
 
 export {
+  schema as mappingKey,
+  Type as MappingKey
+} from "./mapping-key"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
