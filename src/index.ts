@@ -64,6 +64,11 @@ export {
 } from "./entity-type"
 
 export {
+  schema as entityTypeSet,
+  Type as EntityTypeSet
+} from "./entity-type-set"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
