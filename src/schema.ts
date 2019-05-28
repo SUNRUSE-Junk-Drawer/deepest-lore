@@ -1,6 +1,7 @@
 import * as jsonschema from "jsonschema"
 import * as identifierSet from "./identifier-set"
 import * as localizedString from "./localized-string"
+import * as entityTypeSet from "./entity-type-set"
 
 export const schema: jsonschema.Schema = {
   $schema: `http://json-schema.org/draft-04/schema#`,
@@ -12,12 +13,14 @@ export const schema: jsonschema.Schema = {
     `localizationName`,
     `title`,
     `description`,
+    `entityTypes`
   ],
   properties: {
     localizations: identifierSet.schema,
     localizationName: localizedString.schema,
     title: localizedString.schema,
-    description: localizedString.schema
+    description: localizedString.schema,
+    entityTypes: entityTypeSet.schema
   }
 }
 
@@ -46,4 +49,9 @@ export type Type = {
    * localizations.
    */
   readonly description: localizedString.Type
+
+  /**
+   * Maps entity type identifiers to schemas.
+   */
+  readonly entityTypes: entityTypeSet.Type
 }
