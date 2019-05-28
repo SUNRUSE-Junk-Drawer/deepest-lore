@@ -10,6 +10,7 @@ describe(`schema`, () => {
     title: {},
     description: {},
     entityTypes: {},
+    mappings: {},
     unexpected: {}
   }, `instance`, `additionalProperty "unexpected" exists in instance when not allowed`))
   describe(`localizations`, () => {
@@ -17,14 +18,16 @@ describe(`schema`, () => {
       localizationName: {},
       title: {},
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }, `instance`, `requires property "localizations"`))
     shared.testIdentifierSet(schema.schema, instance => ({
       localizations: instance,
       localizationName: {},
       title: {},
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }), `instance.localizations`)
   })
   describe(`localizationName`, () => {
@@ -32,14 +35,16 @@ describe(`schema`, () => {
       localizations: [],
       title: {},
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }, `instance`, `requires property "localizationName"`))
     shared.testLocalizedString(schema.schema, instance => ({
       localizations: [],
       localizationName: instance,
       title: {},
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }), `instance.localizationName`)
   })
   describe(`title`, () => {
@@ -47,14 +52,16 @@ describe(`schema`, () => {
       localizations: [],
       localizationName: {},
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }, `instance`, `requires property "title"`))
     shared.testLocalizedString(schema.schema, instance => ({
       localizations: [],
       localizationName: {},
       title: instance,
       description: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }), `instance.title`)
   })
   describe(`description`, () => {
@@ -62,14 +69,16 @@ describe(`schema`, () => {
       localizations: [],
       localizationName: {},
       title: {},
-      entityTypes: {}
+      entityTypes: {},
+      mappings: {}
     }, `instance`, `requires property "description"`))
     shared.testLocalizedString(schema.schema, instance => ({
       localizations: [],
       localizationName: {},
       title: {},
       entityTypes: {},
-      description: instance
+      description: instance,
+      mappings: {}
     }), `instance.description`)
   })
   describe(`entityTypes`, () => {
@@ -77,14 +86,33 @@ describe(`schema`, () => {
       localizations: [],
       localizationName: {},
       title: {},
-      description: {}
+      description: {},
+      mappings: {}
     }, `instance`, `requires property "entityTypes"`))
     shared.testEntityTypeSet(schema.schema, instance => ({
       localizations: [],
       localizationName: {},
       title: {},
       description: {},
-      entityTypes: instance
+      entityTypes: instance,
+      mappings: {}
     }), `instance.entityTypes`)
+  })
+  describe(`mappings`, () => {
+    describe(`missing`, () => shared.rejects(schema.schema, {
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {}
+    }, `instance`, `requires property "mappings"`))
+    shared.testMappingSet(schema.schema, instance => ({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: instance
+    }), `instance.mappings`)
   })
 })
