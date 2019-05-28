@@ -51,7 +51,6 @@
     "data-model.md",
     "dist/**/*.js",
     "dist/**/*.d.ts",
-    "dist/**/**.js.map",
     "!dist/**/*.tests.*"
   ],
   "watch": {
