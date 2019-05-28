@@ -17,5 +17,5 @@ export type Type = {
   /**
    * A mapping of a column identifier to its corresponding schema.
    */
-  readonly [column: string]: string
+  readonly [column: string]: column.Type
 }
