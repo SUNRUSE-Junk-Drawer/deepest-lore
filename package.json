@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/validator",
   "description": "Validates that deepest-lore schemas (and optionally data) are consistent with themselves and one another.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "sideEffects": false,
   "repository": {
     "type": "git",
