@@ -15,6 +15,7 @@ import * as entityType from "./entity-type"
 import * as entityTypeSet from "./entity-type-set"
 import * as mappingKey from "./mapping-key"
 import * as mappingKeySet from "./mapping-key-set"
+import * as mappingSet from "./mapping-set"
 import * as schema from "./schema"
 import * as index from "./index"
 
@@ -67,6 +68,9 @@ describe(`index`, () => {
   })
   describe(`mapping key set`, () => {
     it(`schema`, () => expect(index.mappingKeySet).toBe(mappingKeySet.schema))
+  })
+  describe(`mapping set`, () => {
+    it(`schema`, () => expect(index.mappingSet).toBe(mappingSet.schema))
   })
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
