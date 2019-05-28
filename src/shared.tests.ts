@@ -976,3 +976,39 @@ export function testMappingKey(
     }), `${property}.label`)
   })
 }
+
+export function testMappingKeySet(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) object`))
+  run(emptyObjects, value => accepts(schema, instanceFactory(value)))
+  run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, {
+    entityType: `for_eg`,
+    label: {}
+  }))))
+  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, {
+    entityType: `for_eg`,
+    label: {}
+  })), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
+  testMappingKey(schema, value => instanceFactory(keyValue(`for_eg`, value)), `${property}.for_eg`)
+  describe(`multiple columns`, () => accepts(schema, instanceFactory({
+    for_eg: {
+      entityType: `refr_a`,
+      label: {}
+    },
+    oth_id: {
+      entityType: `refr_b`,
+      label: {}
+    },
+    anther: {
+      entityType: `refr_c`,
+      label: {}
+    },
+    lastid: {
+      entityType: `refr_d`,
+      label: {}
+    }
+  })))
+}

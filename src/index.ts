@@ -74,6 +74,11 @@ export {
 } from "./mapping-key"
 
 export {
+  schema as mappingKeySet,
+  Type as MappingKeySet
+} from "./mapping-key-set"
+
+export {
   schema as schema,
   Type as Schema
 } from "./schema"
