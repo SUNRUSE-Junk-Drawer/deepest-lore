@@ -10,7 +10,7 @@ All files are expected to be UTF-8 encoded.
 
 The schema, as defined in [@deepest-lore/data-model](https://www.npmjs.com/package/@deepest-lore/data-model).
 
-### `{base directory}/{entity type identifier}.csv`
+### `{base directory}/entities/{entity type identifier}.csv`
 
 Each row defines a single entity instance while the first row defines the
 columns.  The following patterns are supported:
@@ -36,7 +36,7 @@ pebble,Pebble,Caillou,rock__,FALSE,No,50,1
 | lemon_ | Lemon         | Citron        | fruit_ | TRUE   | Yes    | 4      | 2      |
 | pebble | Pebble        | Caillou       | rock__ | FALSE  | No     | 50     | 1      |
 
-### `{base directory}/{mapping identifier}.csv`
+### `{base directory}/mappings/{mapping identifier}.csv`
 
 Similarly to entity type files, each row defines a single mapping while the
 first row defines the columns.  The following patterns are supported:
