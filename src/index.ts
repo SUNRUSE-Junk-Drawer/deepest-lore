@@ -92,3 +92,8 @@ export {
   schema as entityTypeDataFileRow,
   Type as EntityTypeDataFileRow
 } from "./entity-type-data-file-row"
+
+export {
+  schema as entityTypeDataFile,
+  Type as EntityTypeDataFile
+} from "./entity-type-data-file"
