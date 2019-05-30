@@ -102,3 +102,8 @@ export {
   schema as entityTypeDataFileSet,
   Type as EntityTypeDataFileSet
 } from "./entity-type-data-file-set"
+
+export {
+  schema as mappingDataFileRow,
+  Type as MappingDataFileRow
+} from "./mapping-data-file-row"
