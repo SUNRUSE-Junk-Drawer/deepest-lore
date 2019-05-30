@@ -1116,3 +1116,109 @@ export function testMappingSet(
     }
   })))
 }
+
+export function testEntityTypeDataFileRow(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(
+    schema, instanceFactory(value), property, `is not of a type(s) object`
+  ))
+  describe(`primary key`, () => testIdentifier(
+    schema,
+    value => instanceFactory(keyValue(`$`, value)),
+    `${property}.$`
+  ))
+  describe(`mapping key`, () => {
+    run(
+      combinationOf(nonEmptyStrings, identifierStrings),
+      key => rejects(
+        schema,
+        instanceFactory(keyValue(`$${key}`, `for_eg`)),
+        property,
+        `additionalProperty ${JSON.stringify(`$${key}`)} exists in instance when not allowed`
+      )
+    )
+  })
+  describe(`unlocalized column`, () => {
+    run(
+      nonIdentifierStrings,
+      key => rejects(
+        schema,
+        instanceFactory(keyValue(key, `for_eg`)),
+        property,
+        `additionalProperty ${JSON.stringify(key)} exists in instance when not allowed`
+      )
+    )
+    run(
+      identifierStrings,
+      key => run(strings, value => accepts(
+        schema,
+        instanceFactory(keyValue(key, value))
+      ))
+    )
+    run(
+      identifierStrings,
+      key => run(nonStrings, value => rejects(
+        schema,
+        instanceFactory(keyValue(key, value)),
+        `${property}.${key}`,
+        `is not of a type(s) string`
+      ))
+    )
+  })
+  describe(`localized column`, () => {
+    runProduct(
+      productOf(identifierStrings, identifierStrings),
+      (keyA, keyB) => run(strings, value => accepts(
+        schema,
+        instanceFactory(keyValue(`${keyA}:${keyB}`, value))
+      ))
+    )
+    runProduct(
+      productOf(identifierStrings, identifierStrings),
+      (keyA, keyB) => run(nonStrings, value => rejects(
+        schema,
+        instanceFactory(keyValue(`${keyA}:${keyB}`, value)),
+        `${property}.${keyA}:${keyB}`,
+        `is not of a type(s) string`
+      ))
+    )
+    runProduct(
+      productOf(nonIdentifierStrings, identifierStrings),
+      (keyA, keyB) => rejects(
+        schema,
+        instanceFactory(keyValue(`${keyA}:${keyB}`, `for_eg`)),
+        property,
+        `additionalProperty ${JSON.stringify(`${keyA}:${keyB}`)} exists in instance when not allowed`
+      )
+    )
+    runProduct(
+      productOf(identifierStrings, nonIdentifierStrings),
+      (keyA, keyB) => rejects(
+        schema,
+        instanceFactory(keyValue(`${keyA}:${keyB}`, `for_eg`)),
+        property,
+        `additionalProperty ${JSON.stringify(`${keyA}:${keyB}`)} exists in instance when not allowed`
+      )
+    )
+    runProduct(
+      productOf(nonIdentifierStrings, nonIdentifierStrings),
+      (keyA, keyB) => rejects(
+        schema,
+        instanceFactory(keyValue(`${keyA}:${keyB}`, `for_eg`)),
+        property,
+        `additionalProperty ${JSON.stringify(`${keyA}:${keyB}`)} exists in instance when not allowed`
+      )
+    )
+  })
+  describe(`multi-column`, () => accepts(schema, instanceFactory({
+    $: `prikey`,
+    col__a: `Test Value A`,
+    col__b: `Test Value B`,
+    "col__c:loc__a": `Test Value C`,
+    "col__c:loc__b": `Test Value D`,
+    "col__d:loc__a": `Test Value E`
+  })))
+}
