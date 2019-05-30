@@ -67,8 +67,19 @@ type Callback<T> = (
   value: T
 ) => void
 
+type ProductCallback<T> = (
+  descriptionA: string,
+  valueA: T,
+  descriptionB: string,
+  valueB: T
+) => void
+
 type Source<T> = (
   callback: Callback<T>
+) => void
+
+type ProductSource<T> = (
+  callback: ProductCallback<T>
 ) => void
 
 type InstanceFactory = (value: any) => any
@@ -92,6 +103,27 @@ export function combinationOf<T>(
       source(callback)
     }
   }
+}
+
+export function productOf<T>(
+  a: Source<T>,
+  b: Source<T>
+): ProductSource<T> {
+  return (
+    callback: ProductCallback<T>
+  ): void => a((descriptionA, valueA) => b((descriptionB, valueB) => callback(
+    descriptionA, valueA, descriptionB, valueB
+  )))
+}
+
+export function runProduct<T>(
+  source: ProductSource<T>,
+  test: (
+    valueA: T,
+    valueB: T
+  ) => void
+): void {
+  source((descriptionA, valueA, descriptionB, valueB) => describe(`${descriptionA}:${descriptionB}`, () => test(valueA, valueB)))
 }
 
 export function setOf(
