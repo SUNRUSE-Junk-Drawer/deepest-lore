@@ -19,6 +19,7 @@ import * as mappingSet from "./mapping-set"
 import * as schema from "./schema"
 import * as entityTypeDataFileRow from "./entity-type-data-file-row"
 import * as entityTypeDataFile from "./entity-type-data-file"
+import * as entityTypeDataFileSet from "./entity-type-data-file-set"
 import * as index from "./index"
 
 describe(`index`, () => {
@@ -82,4 +83,6 @@ describe(`index`, () => {
       .toBe(entityTypeDataFileRow.schema)))
   describe(`entity type data file`, () => it(`schema`,
     () => expect(index.entityTypeDataFile).toBe(entityTypeDataFile.schema)))
+  describe(`entity type data file set`, () => it(`schema`,
+    () => expect(index.entityTypeDataFileSet).toBe(entityTypeDataFileSet.schema)))
 })

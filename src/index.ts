@@ -97,3 +97,8 @@ export {
   schema as entityTypeDataFile,
   Type as EntityTypeDataFile
 } from "./entity-type-data-file"
+
+export {
+  schema as entityTypeDataFileSet,
+  Type as EntityTypeDataFileSet
+} from "./entity-type-data-file-set"
