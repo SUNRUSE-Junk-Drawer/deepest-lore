@@ -17,6 +17,7 @@ import * as mappingKey from "./mapping-key"
 import * as mappingKeySet from "./mapping-key-set"
 import * as mappingSet from "./mapping-set"
 import * as schema from "./schema"
+import * as entityTypeDataFileRow from "./entity-type-data-file-row"
 import * as index from "./index"
 
 describe(`index`, () => {
@@ -75,4 +76,7 @@ describe(`index`, () => {
   describe(`schema`, () => {
     it(`schema`, () => expect(index.schema).toBe(schema.schema))
   })
+  describe(`entity type data file row`, () => it(`schema`,
+    () => expect(index.entityTypeDataFileRow)
+      .toBe(entityTypeDataFileRow.schema)))
 })
