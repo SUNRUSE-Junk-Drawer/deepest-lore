@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/cli",
   "description": "A command-line tool for processing deepest-lore schemas and data. ",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "sideEffects": false,
   "repository": {
     "type": "git",
