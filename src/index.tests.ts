@@ -22,6 +22,7 @@ import * as entityTypeDataFile from "./entity-type-data-file"
 import * as entityTypeDataFileSet from "./entity-type-data-file-set"
 import * as mappingDataFileRow from "./mapping-data-file-row"
 import * as mappingDataFile from "./mapping-data-file"
+import * as mappingDataFileSet from "./mapping-data-file-set"
 import * as index from "./index"
 
 describe(`index`, () => {
@@ -91,4 +92,6 @@ describe(`index`, () => {
     () => expect(index.mappingDataFileRow).toBe(mappingDataFileRow.schema)))
   describe(`mapping data file`, () => it(`schema`,
     () => expect(index.mappingDataFile).toBe(mappingDataFile.schema)))
+  describe(`mapping data file set`, () => it(`schema`,
+    () => expect(index.mappingDataFileSet).toBe(mappingDataFileSet.schema)))
 })

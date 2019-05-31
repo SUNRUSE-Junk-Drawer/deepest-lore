@@ -1399,3 +1399,38 @@ export function testMappingDataFile(
   )
   describe(`multi-row`, () => accepts(schema, instanceFactory([{}, {}, {}])))
 }
+
+export function testMappingDataFileSet(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(
+    schema,
+    instanceFactory(value),
+    property,
+    `is not of a type(s) object`
+  ))
+  run(emptyObjects, value => accepts(schema, instanceFactory(value)))
+  run(
+    identifierStrings,
+    value => accepts(schema, instanceFactory(keyValue(value, [])))
+  )
+  run(nonIdentifierStrings, value => rejects(
+    schema,
+    instanceFactory(keyValue(value, [])),
+    property,
+    `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`
+  ))
+  testMappingDataFile(
+    schema,
+    value => instanceFactory(keyValue(`for_eg`, value)),
+    `${property}.for_eg`
+  )
+  describe(`multiple files`, () => accepts(schema, instanceFactory({
+    for_eg: [],
+    oth_id: [],
+    anther: [],
+    lastid: []
+  })))
+}
