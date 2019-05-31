@@ -122,3 +122,8 @@ export {
   schema as data,
   Type as Data
 } from "./data"
+
+export {
+  schema as imported,
+  Type as Imported
+} from "./imported"
