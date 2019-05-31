@@ -23,7 +23,7 @@
     "typescript": "3.5.1"
   },
   "dependencies": {
-    "@deepest-lore/data-model": "0.0.5",
+    "@deepest-lore/data-model": "0.0.11",
     "hyperapp": "^1.2.9",
     "hyperapp-render": "^3.1.0"
   },
