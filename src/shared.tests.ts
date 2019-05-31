@@ -1122,7 +1122,9 @@ export function testSchema(
   instanceFactory: InstanceFactory,
   property: string
 ): void {
-  run(nonObjects, value => rejects(schema, value, property, `is not of a type(s) object`))
+  run(nonObjects, value => rejects(
+    schema, instanceFactory(value), property, `is not of a type(s) object`
+  ))
   describe(`unexpected properties`, () => rejects(schema, instanceFactory({
     localizations: [],
     localizationName: {},
@@ -1559,7 +1561,9 @@ export function testData(
   instanceFactory: InstanceFactory,
   property: string
 ): void {
-  run(nonObjects, value => rejects(schema, value, property, `is not of a type(s) object`))
+  run(nonObjects, value => rejects(
+    schema, instanceFactory(value), property, `is not of a type(s) object`
+  ))
   describe(`unexpected properties`, () => rejects(schema, instanceFactory({
     entityTypes: {},
     mappings: {},
