@@ -1117,6 +1117,125 @@ export function testMappingSet(
   })))
 }
 
+export function testSchema(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(schema, value, property, `is not of a type(s) object`))
+  describe(`unexpected properties`, () => rejects(schema, instanceFactory({
+    localizations: [],
+    localizationName: {},
+    title: {},
+    description: {},
+    entityTypes: {},
+    mappings: {},
+    unexpected: {}
+  }), property, `additionalProperty "unexpected" exists in instance when not allowed`))
+  describe(`localizations`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), property, `requires property "localizations"`))
+    testIdentifierSet(schema, instance => instanceFactory({
+      localizations: instance,
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), `${property}.localizations`)
+  })
+  describe(`localizationName`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizations: [],
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), property, `requires property "localizationName"`))
+    testLocalizedString(schema, instance => instanceFactory({
+      localizations: [],
+      localizationName: instance,
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), `${property}.localizationName`)
+  })
+  describe(`title`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizations: [],
+      localizationName: {},
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), property, `requires property "title"`))
+    testLocalizedString(schema, instance => instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: instance,
+      description: {},
+      entityTypes: {},
+      mappings: {}
+    }), `${property}.title`)
+  })
+  describe(`description`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      entityTypes: {},
+      mappings: {}
+    }), property, `requires property "description"`))
+    testLocalizedString(schema, instance => instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      entityTypes: {},
+      description: instance,
+      mappings: {}
+    }), `${property}.description`)
+  })
+  describe(`entityTypes`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      mappings: {}
+    }), property, `requires property "entityTypes"`))
+    testEntityTypeSet(schema, instance => instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: instance,
+      mappings: {}
+    }), `${property}.entityTypes`)
+  })
+  describe(`mappings`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {}
+    }), property, `requires property "mappings"`))
+    testMappingSet(schema, instance => instanceFactory({
+      localizations: [],
+      localizationName: {},
+      title: {},
+      description: {},
+      entityTypes: {},
+      mappings: instance
+    }), `${property}.mappings`)
+  })
+}
+
 export function testEntityTypeDataFileRow(
   schema: jsonschema.Schema,
   instanceFactory: InstanceFactory,
