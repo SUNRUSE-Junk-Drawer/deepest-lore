@@ -24,6 +24,7 @@ import * as mappingDataFileRow from "./mapping-data-file-row"
 import * as mappingDataFile from "./mapping-data-file"
 import * as mappingDataFileSet from "./mapping-data-file-set"
 import * as data from "./data"
+import * as imported from "./imported"
 import * as index from "./index"
 
 describe(`index`, () => {
@@ -97,5 +98,8 @@ describe(`index`, () => {
     () => expect(index.mappingDataFileSet).toBe(mappingDataFileSet.schema)))
   describe(`data`, () => {
     it(`schema`, () => expect(index.data).toBe(data.schema))
+  })
+  describe(`imported`, () => {
+    it(`schema`, () => expect(index.imported).toBe(imported.schema))
   })
 })
