@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/html-export",
   "description": "Exports deepest-lore schemas and data to wiki-like HTML.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "sideEffects": false,
   "repository": {
     "type": "git",
