@@ -107,3 +107,8 @@ export {
   schema as mappingDataFileRow,
   Type as MappingDataFileRow
 } from "./mapping-data-file-row"
+
+export {
+  schema as mappingDataFile,
+  Type as MappingDataFile
+} from "./mapping-data-file"
