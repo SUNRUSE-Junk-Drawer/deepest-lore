@@ -1,7 +1,7 @@
 {
   "name": "@deepest-lore/fs-import-watch",
   "description": "Imports deepest-lore schemas and data from JSON and CSV files on disk, automatically re-importing on changes.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "sideEffects": false,
   "repository": {
     "type": "git",
