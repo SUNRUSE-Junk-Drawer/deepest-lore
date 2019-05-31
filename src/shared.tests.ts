@@ -1553,3 +1553,34 @@ export function testMappingDataFileSet(
     lastid: []
   })))
 }
+
+export function testData(
+  schema: jsonschema.Schema,
+  instanceFactory: InstanceFactory,
+  property: string
+): void {
+  run(nonObjects, value => rejects(schema, value, property, `is not of a type(s) object`))
+  describe(`unexpected properties`, () => rejects(schema, instanceFactory({
+    entityTypes: {},
+    mappings: {},
+    unexpected: {}
+  }), property, `additionalProperty "unexpected" exists in instance when not allowed`))
+  describe(`entityTypes`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      mappings: {}
+    }), property, `requires property "entityTypes"`))
+    testEntityTypeDataFileSet(schema, instance => instanceFactory({
+      entityTypes: instance,
+      mappings: {}
+    }), `${property}.entityTypes`)
+  })
+  describe(`mappings`, () => {
+    describe(`missing`, () => rejects(schema, instanceFactory({
+      entityTypes: {}
+    }), property, `requires property "mappings"`))
+    testMappingDataFileSet(schema, instance => instanceFactory({
+      entityTypes: {},
+      mappings: instance
+    }), `${property}.mappings`)
+  })
+}
