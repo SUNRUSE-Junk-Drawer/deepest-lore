@@ -117,3 +117,8 @@ export {
   schema as mappingDataFileSet,
   Type as MappingDataFileSet
 } from "./mapping-data-file-set"
+
+export {
+  schema as data,
+  Type as Data
+} from "./data"
