@@ -6,6 +6,8 @@ All runs include a pass by [@deepest-lore/validator](https://www.npmjs.com/packa
 
 Warnings will be printed but do not count as an error by default.
 
+Example: `deepest-lore {parameters}`.
+
 ## Parameters
 
 ### `--fs-import {path}`
