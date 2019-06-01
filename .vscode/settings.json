@@ -12,10 +12,6 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.exclude": {
-    ".git": true,
-    "node_modules": true,
-    "dist": true,
-    ".nyc_output": true,
-    "coverage": true
+    ".git": true
   }
 }
