@@ -2,7 +2,7 @@
   "name": "deepest-lore",
   "description": "This is a stub package; please see the @deepest-lore/* scope.",
   "deprecated": "This is a stub package; please see the @deepest-lore/* scope.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "sideEffects": false,
   "repository": {
     "type": "git",
