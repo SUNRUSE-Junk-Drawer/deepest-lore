@@ -1,0 +1,12 @@
+{
+  "name": "deepest-lore",
+  "description": "This is a stub package; please see the @deepest-lore/* scope.",
+  "deprecated": "This is a stub package; please see the @deepest-lore/* scope.",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepest-lore/stub"
+  },
+  "license": "MIT"
+}
