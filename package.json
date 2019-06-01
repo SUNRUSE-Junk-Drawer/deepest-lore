@@ -53,6 +53,9 @@
     "cache": false
   },
   "main": "dist/index.js",
+  "bin": {
+    "deepest-lore": "dist/index.js"
+  },
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts",
