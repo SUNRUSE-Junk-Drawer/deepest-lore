@@ -5,4 +5,3 @@ This is a stub package; please see the @deepest-lore/* scope.
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdeepest-lore%2Fstub.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdeepest-lore%2Fstub?ref=badge_large)
-stubstub
