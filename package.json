@@ -1,0 +1,18 @@
+{
+  "name": "@deepest-lore/example",
+  "description": "An example which uses deepest-lore/cli to build documentation and a small application.",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepest-lore/example"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@deepest-lore/cli": "0.0.7"
+  },
+  "scripts": {
+    "test": "deepest-lore --fs-import src --warnings-as-errors --html-export dist/html",
+    "test-watch": "deepest-lore --fs-import-watch src --warnings-as-errors --html-export dist/html"
+  }
+}
