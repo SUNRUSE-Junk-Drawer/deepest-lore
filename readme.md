@@ -2,6 +2,17 @@
 
 Imports deepest-lore schemas and data from JSON and CSV files on disk.
 
+## Example
+
+```js
+import fsImport from "@deepest-lore/fs-import"
+
+async function importData() {
+  const imported = await fsImport(`base-path`)
+  console.log(imported) // { schema: ..., data: { entityTypes: ..., mappings: ... } }
+}
+```
+
 ## File structure
 
 All files are expected to be UTF-8 encoded.
