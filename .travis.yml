@@ -8,5 +8,5 @@ deploy:
   api_key:
     secure: FdB+DSJS5YOcm2CIhKJCri3jee/uS3uG6krR/UMTCt+HA/r6+rCYMsZyTncy3hXLpdiWLYlD270EmUTOefrZLg8FuqwDRVmMLbbkWc3oeacYxHJIsimLTF9eb6mAat3CX+cBw0dP/X2qQE4ZNuxEskhArZ9wkpaPjTXH7aOM/hH5jw1tbNedI+W8pjzgpI6X32nziJ+yVd+WVZISQAUCBLhV2V7YmDuYLX/evuTZro3puFfZj3z7Z0VTfM9OPWVVP4OMdknxvxVdRNZhU2Hzbx8VdsMKDq3Fra2KI/jX65qHvoZjX5SHN9XLMTX1Oyk0IcvgeseuWg7XE7W1KHmzkuJ4ZRvMTfZhPMiTk7BY6s3GAaC2/axAeChljO3qdnMSHhSJ0XE2HroHldQKWOQEc+6sPDgj1HZ+Dq8zeZfJGNAcVyOE8WK+k2xGka/Lh6J8SvvKnQuTs8fp0O1o7Zr+MKsSt7IYRmStejUA98dfn+P1pvWZxc3yDylhBEQCb8v2MCAXD1uT/AiMCC/XnE1a+p1fqORtLdIvge22r1KRGbbi21kBK0QwXppqQbMgBiTLTSWv6h0jTfhY/sJYgw+QuIPbH+t6XOUq/sUEpDMziQagV/8mp5rp0VYggo8ubawOQJ+zoez4amr9UttK+f0GT+F6xjUyUH3VcRDOmnbfth0=
   on:
-    repo: sunruse/deepest-lore
+    repo: SUNRUSE/deepest-lore
     branch: master
