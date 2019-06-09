@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- node
+deploy:
+  provider: npm
+  email: jameswilddev@outlook.com
+  skip_cleanup: true
+  api_key:
+    secure: DypUF52ye1mNZaT6UZI/RRfx03DhCdXXQsFOtkQswesnoqWu4OjEjKJoru8UOLG5HQhwaadG3n1X5mJuUif1t2zUYA04MVsvzVwOkmsRRb6o2FwZa17ckT76s4yPVFu1yADG3CeKUBCRNMBY6hYce3aRW4LxwwZUCAkDLX0f92L4v0VusPSe0pCWcW/tbjQUoXtXHh1v8q/xaRnCfeuRZIOS3XZPr/qrMbnkef2TZQ6HpwU6zgAdqei7Het0odBiTyrDl0ZvVvpgTSAie1l7gt0+fCOz1xM4kpbmIc6Q92vpRy+bkCOzet9r0hGaJ8ZjcwH+pCDElU5R21xsTueK1Ybt8T4zXCsa6ZucBoDUh9L3NkMwpKHgJvfMwo/X/uzVpAxfYLPuFcIX1uNWOBeKs32Ukjc5ILcvv9q53HaIdKXPLSBpGk4F3xcaZTzZhUC+pGghcUOc4wJ/dAmizMYiIXSdN1KkNMwngkIj0IWIgHUe0SjM3rTInCol5Ajn+KBok7CBq/FsuqeB1fIT6EREMBQ0HU9ZcPPsMri05GARTolQbilzK5fb9JjBYrDOG/VsX9yhZ0bRi0xes7LNBfygBkYYJGW/CBVUi0I3XtdGZdpyBEIGPx4ndnqJpwxIyb+ybEOI6AcSEFls0ChgTl+k0iTwvv+7d+OW0yY7qekmYKc=
+  on:
+    repo: deepest-lore/html-export
+    branch: master
