@@ -1,4 +1,4 @@
-# `deepest-lore` [![Travis](https://img.shields.io/travis/SUNRUSE/deepest-lore.svg)](https://travis-ci.org/SUNRUSE/deepest-lore) [![License](https://img.shields.io/github/license/SUNRUSE/deepest-lore.svg)](license) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdeepest-lore%2Fcli.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdeepest-lore%2Fcli?ref=badge_shield) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![npm](https://img.shields.io/npm/v/deepest-lore.svg)](https://www.npmjs.com/package/deepest-lore) [![npm type definitions](https://img.shields.io/npm/types/deepest-lore.svg)](https://www.npmjs.com/package/deepest-lore)
+# `deepest-lore` [![Travis](https://img.shields.io/travis/SUNRUSE/deepest-lore.svg)](https://travis-ci.org/SUNRUSE/deepest-lore) [![License](https://img.shields.io/github/license/SUNRUSE/deepest-lore.svg)](license) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSUNRUSE%2Fdeepest-lore.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSUNRUSE%2Fdeepest-lore?ref=badge_shield) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![npm](https://img.shields.io/npm/v/deepest-lore.svg)](https://www.npmjs.com/package/deepest-lore) [![npm type definitions](https://img.shields.io/npm/types/deepest-lore.svg)](https://www.npmjs.com/package/deepest-lore)
 
 Tools for creating and managing your deepest lore.
 
@@ -207,4 +207,4 @@ Uses [@deepest-lore/html-export](https://www.npmjs.com/package/@deepest-lore/htm
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdeepest-lore%2Fcli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdeepest-lore%2Fcli?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSUNRUSE%2Fdeepest-lore.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSUNRUSE%2Fdeepest-lore?ref=badge_large)
