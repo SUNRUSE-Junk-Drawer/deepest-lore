@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@deepest-lore/data-model": "0.0.5",
-    "@deepest-lore/fs-import": "0.0.3",
+    "@deepest-lore/fs-import": "0.0.9",
     "@deepest-lore/fs-import-watch": "0.0.1",
     "@deepest-lore/html-export": "0.0.1",
     "@deepest-lore/validator": "0.0.2",
