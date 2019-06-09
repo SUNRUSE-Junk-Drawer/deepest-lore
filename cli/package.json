@@ -24,7 +24,7 @@
     "typescript": "3.5.1"
   },
   "dependencies": {
-    "@deepest-lore/data-model": "0.0.5",
+    "@deepest-lore/data-model": "0.0.11",
     "@deepest-lore/fs-import": "0.0.3",
     "@deepest-lore/fs-import-watch": "0.0.1",
     "@deepest-lore/html-export": "0.0.1",
