@@ -7,6 +7,7 @@ themselves and one another.
 
 ### Errors raised on failure
 
+- The schema document matches the JSON schema.
 - All entity reference columns reference an existing entity type.
 - All entity reference column defaults refer to an existing instance of their
   referenced entity type.
