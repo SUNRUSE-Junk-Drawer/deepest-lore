@@ -1,6 +1,6 @@
 import * as jsonschema from "jsonschema"
-import * as _schema from "./schema"
-import * as data from "./data"
+import * as _schema from "./schema/schema"
+import * as data from "./data/data"
 
 export const schema: jsonschema.Schema = {
   description: `A full set of schema and data.`,

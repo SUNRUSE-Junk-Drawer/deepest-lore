@@ -1,127 +1,127 @@
 export {
   schema as identifier,
   Type as Identifier
-} from "./identifier"
+} from "./shared/identifier"
 
 export {
   schema as identifierSet,
   Type as IdentifierSet
-} from "./identifier-set"
+} from "./shared/identifier-set"
 
 export {
   schema as localizedString,
   Type as LocalizedString
-} from "./localized-string"
+} from "./shared/localized-string"
 
 export {
   schema as booleanColumn,
   Type as BooleanColumn
-} from "./boolean-column"
+} from "./schema/boolean-column"
 
 export {
   schema as stringColumn,
   Type as StringColumn
-} from "./string-column"
+} from "./schema/string-column"
 
 export {
   schema as entityReferenceColumn,
   Type as EntityReferenceColumn
-} from "./entity-reference-column"
+} from "./schema/entity-reference-column"
 
 export {
   schema as integerColumn,
   Type as IntegerColumn
-} from "./integer-column"
+} from "./schema/integer-column"
 
 export {
   schema as floatColumn,
   Type as FloatColumn
-} from "./float-column"
+} from "./schema/float-column"
 
 export {
   schema as column,
   Type as Column
-} from "./column"
+} from "./schema/column"
 
 export {
   schema as columnSet,
   Type as ColumnSet
-} from "./column-set"
+} from "./schema/column-set"
 
 export {
   schema as labelPart,
   Type as LabelPart
-} from "./label-part"
+} from "./schema/label-part"
 
 export {
   schema as label,
   Type as Label
-} from "./label"
+} from "./schema/label"
 
 export {
   schema as entityType,
   Type as EntityType
-} from "./entity-type"
+} from "./schema/entity-type"
 
 export {
   schema as entityTypeSet,
   Type as EntityTypeSet
-} from "./entity-type-set"
+} from "./schema/entity-type-set"
 
 export {
   schema as mappingKey,
   Type as MappingKey
-} from "./mapping-key"
+} from "./schema/mapping-key"
 
 export {
   schema as mappingKeySet,
   Type as MappingKeySet
-} from "./mapping-key-set"
+} from "./schema/mapping-key-set"
 
 export {
   schema as mappingSet,
   Type as MappingSet
-} from "./mapping-set"
+} from "./schema/mapping-set"
 
 export {
   schema as schema,
   Type as Schema
-} from "./schema"
+} from "./schema/schema"
 
 export {
   schema as entityTypeDataFileRow,
   Type as EntityTypeDataFileRow
-} from "./entity-type-data-file-row"
+} from "./data/entity-type-data-file-row"
 
 export {
   schema as entityTypeDataFile,
   Type as EntityTypeDataFile
-} from "./entity-type-data-file"
+} from "./data/entity-type-data-file"
 
 export {
   schema as entityTypeDataFileSet,
   Type as EntityTypeDataFileSet
-} from "./entity-type-data-file-set"
+} from "./data/entity-type-data-file-set"
 
 export {
   schema as mappingDataFileRow,
   Type as MappingDataFileRow
-} from "./mapping-data-file-row"
+} from "./data/mapping-data-file-row"
 
 export {
   schema as mappingDataFile,
   Type as MappingDataFile
-} from "./mapping-data-file"
+} from "./data/mapping-data-file"
 
 export {
   schema as mappingDataFileSet,
   Type as MappingDataFileSet
-} from "./mapping-data-file-set"
+} from "./data/mapping-data-file-set"
 
 export {
   schema as data,
   Type as Data
-} from "./data"
+} from "./data/data"
 
 export {
   schema as imported,

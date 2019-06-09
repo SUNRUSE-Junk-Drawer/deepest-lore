@@ -1,4 +1,4 @@
-import * as identifier from "./identifier"
+import * as identifier from "./shared/identifier"
 import * as jsonschema from "jsonschema"
 
 export function accepts<T>(
