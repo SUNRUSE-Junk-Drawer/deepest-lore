@@ -8,4 +8,7 @@ export const schema: jsonschema.Schema = {
   items: identifier.schema
 }
 
+/**
+ * A set of invariant identifiers.
+ */
 export type Type = ReadonlyArray<identifier.Type>
