@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- node
+deploy:
+  provider: npm
+  email: jameswilddev@outlook.com
+  skip_cleanup: true
+  api_key:
+    secure: LFfblQAjAbw57tXhsztHBVOpDjnqWeSwwPv4UylsrcgiTyhOqjzMgAKo0zHA8Xttv86jcXhC3ziQrNAkFdHtOvPCcgAM5N8UCRuwzTHsC64w9KvjgrKW0rWR2nxCPwpHT6jZefloH66T6qqXOHwHs+HVg9ju83hql9IjnkjPQxXcvIAOS7LXiYsp2YcKssYR5RuIq3UHSWwfPOtPspmPcjY64V8pKcyvxjKNmwCKoT2csZ5ejnvqiXfUfKdtw1dpFfxqbN3agL3SDaewraz4a8wJ/PmdQO8+m/4w53d2b3ly4/rpG1ZGUgZKHh3eMoftHGWs31fnk+KHwKHNaMB0QOSqxvxEU9R6KsrYvNJ6fqYclLKHyMcLg5dBDxXkFVpuYrBLsFVUU/oFao/ybinI7U8Pa03hrZnhyBhJzQekfVCg71/m5IPFDMrDu/Xv1wnkGaEFtiGDhiDAs/2gpF0uoPHpaAAk4cEcGvoBTEH1xIfNvkuZJ9bQt1R0X/+EmycqwTKAv6n7KasINI+QgYbIK5P80hPAIz+NA2QndgXvbBz1CO83nf+mxT0p+NHACGfAgd66KcmWkjnoNFvdTi3Y60+jkYu9FmXs8M6z6LqG9s+m+zM/kcDGXL7jKarQgUF6r/dlKtlgqjvrwUPF3KYee+3UAYove8foNWjOFtA6nhs=
+  on:
+    repo: deepest-lore/validator
+    branch: master
