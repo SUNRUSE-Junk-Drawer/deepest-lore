@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- node
+deploy:
+  provider: npm
+  email: jameswilddev@outlook.com
+  skip_cleanup: true
+  api_key:
+    secure: rmTmrVh40WEOlUAYkjB/QRMDYTph//GbN9mgiMoozDyHdISPAsoRuVbP4LSX/9nFoEecGzUEEZwEzDRE4Tp85XwEF4wgCGdMkAc1DiYy5Q0hBrKfXrtRlrqXnDwYWrgdEe6G60BHSqarayod/L2vjhaN62u0qhtG6NKBBi7rFih4ak3g0QugiHA4cBUtdFR+47t7+sI25ZHIb/ZENEUA9YZ3gFDjB84JtuQl5q7V6af+Hslbms9Hfb8sQWMhb/txLgpOvxLe4GmJWMVkX5r058rg2fAO8K7Za5VFfzUG5li1YPz4jJU7UKxnqI1bMiBG5NmIUg64O9r9zRuBXaVIhJWkAIgbuS3D9pbqchLnljvScW+/V5iirBIFQoHlE9bo34vV4LQzyy1pkNxEbDftv/S0RLd3Y1tKXUNCZDX3uY+7sKfcoobzRAK+eHoQLlktAjE7ak4pLoWBC6lOUEqZiNfDYv1AnK/zlaLYRzGWZFoeXGmJ/DjC56HJ7sdZSEFopC9f1vMo8/mVvxbxkmeG5KZLDZt6B1CPuuYzkyKdeY2x40L6vu5+RDkP6Wu6f40hLs5zEyvd3rwW/UYfGVhoPcVhuNQKELM4m9PB05LDBuq2GFRszaV0UxMGRL7/vuFsz5oRnoT4Y9zxjuG4wp4sotnsgHqjH+lPOgfaCaXJn08=
+  on:
+    repo: deepest-lore/stub
+    branch: master
