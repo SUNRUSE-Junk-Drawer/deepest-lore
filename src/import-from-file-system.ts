@@ -1,11 +1,15 @@
 import * as fs from "fs"
 import * as path from "path"
 import * as neatCsv from "neat-csv"
-import * as dataModel from "@deepest-lore/data-model"
+import * as schema from "./schema/schema"
+import * as entityTypeDataFile from "./data/entity-type-data-file"
+import * as entityTypeDataFileSet from "./data/entity-type-data-file-set"
+import * as data from "./data/data"
+import * as imported from "./imported"
 
 export default async function (
   basePath: string
-): Promise<dataModel.Imported> {
+): Promise<imported.Type> {
   const promises = await Promise.all([
     importSchema(),
     importData()
@@ -16,7 +20,7 @@ export default async function (
     data: promises[1]
   }
 
-  async function importSchema(): Promise<dataModel.Schema> {
+  async function importSchema(): Promise<schema.Type> {
     let json: string
     try {
       json = await fs.promises.readFile(path.join(basePath, `schema.json`), `utf8`)
@@ -31,7 +35,7 @@ export default async function (
     }
   }
 
-  async function importData(): Promise<dataModel.Data> {
+  async function importData(): Promise<data.Type> {
     const promises = await Promise.all([
       importDataFiles(`entity type`, `entity-types`),
       importDataFiles(`mapping`, `mappings`)
@@ -45,9 +49,9 @@ export default async function (
   async function importDataFiles(
     description: string,
     subPath: string
-  ): Promise<dataModel.EntityTypeDataFileSet> {
+  ): Promise<entityTypeDataFileSet.Type> {
     const output: {
-      [entityType: string]: dataModel.EntityTypeDataFile
+      [entityType: string]: entityTypeDataFile.Type
     } = {}
     let names: ReadonlyArray<string>
     try {

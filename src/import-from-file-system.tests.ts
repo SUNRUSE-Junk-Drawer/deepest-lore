@@ -1,8 +1,8 @@
 import "jasmine"
 import * as path from "path"
-import index from "./index"
+import importFromFileSystem from "./import-from-file-system"
 
-describe(`index`, () => {
+describe(`import from file system`, () => {
   const withSuffix = (
     description: string,
     suffix: string
@@ -15,7 +15,7 @@ describe(`index`, () => {
       let imported: any
       beforeAll(async () => {
         imported = null
-        imported = await index(`${path.join(`src`, `scenarios`, basePath)}${suffix}`)
+        imported = await importFromFileSystem(`${path.join(`src`, `scenarios`, basePath)}${suffix}`)
       })
 
       it(`imports the expected value`, () => expect(imported).toEqual(result))
@@ -30,7 +30,7 @@ describe(`index`, () => {
       beforeAll(async () => {
         thrown = null
         try {
-          await index(`${path.join(`src`, `scenarios`, basePath)}${suffix}`)
+          await importFromFileSystem(`${path.join(`src`, `scenarios`, basePath)}${suffix}`)
         } catch (e) {
           thrown = e
         }
