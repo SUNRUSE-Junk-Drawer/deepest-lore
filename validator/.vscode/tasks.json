@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "npm test",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test (watch)",
+      "type": "shell",
+      "command": "npm run-script test-watch",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
