@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as schema from "./schema"
 import * as shared from "./../shared.tests"
+import * as entityTypeSetTests from "./entity-type-set.tests"
 import * as mappingSetTests from "./mapping-set.tests"
 
 export function test(
@@ -97,7 +98,7 @@ export function test(
       description: {},
       mappings: {}
     }), property, `requires property "entityTypes"`))
-    shared.testEntityTypeSet(schema, instance => instanceFactory({
+    entityTypeSetTests.test(schema, instance => instanceFactory({
       localizations: [],
       localizationName: {},
       title: {},
