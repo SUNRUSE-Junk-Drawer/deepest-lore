@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as data from "./data"
 import * as shared from "./../shared.tests"
+import * as mappingDataFileSetTests from "./mapping-data-file-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -29,7 +30,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       entityTypes: {}
     }), property, `requires property "mappings"`))
-    shared.testMappingDataFileSet(schema, instance => instanceFactory({
+    mappingDataFileSetTests.test(schema, instance => instanceFactory({
       entityTypes: {},
       mappings: instance
     }), `${property}.mappings`)
