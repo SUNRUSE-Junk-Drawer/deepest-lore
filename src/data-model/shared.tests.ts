@@ -1080,39 +1080,3 @@ export function testMapping(
     }), `${property}.columns`)
   })
 }
-
-export function testMappingSet(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string
-): void {
-  run(nonObjects, value => rejects(schema, instanceFactory(value), property, `is not of a type(s) object`))
-  run(emptyObjects, value => accepts(schema, instanceFactory(value)))
-  run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, {
-    keys: {},
-    columns: {}
-  }))))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, {
-    keys: {},
-    columns: {}
-  })), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  testMapping(schema, value => instanceFactory(keyValue(`for_eg`, value)), `${property}.for_eg`)
-  describe(`multiple columns`, () => accepts(schema, instanceFactory({
-    for_eg: {
-      keys: {},
-      columns: {}
-    },
-    oth_id: {
-      keys: {},
-      columns: {}
-    },
-    anther: {
-      keys: {},
-      columns: {}
-    },
-    lastid: {
-      keys: {},
-      columns: {}
-    }
-  })))
-}
