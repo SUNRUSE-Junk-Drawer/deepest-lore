@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as data from "./data"
 import * as shared from "./../shared.tests"
+import * as entityTypeDataFileSetTests from "./entity-type-data-file-set.tests"
 import * as mappingDataFileSetTests from "./mapping-data-file-set.tests"
 
 export function test(
@@ -21,7 +22,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       mappings: {}
     }), property, `requires property "entityTypes"`))
-    shared.testEntityTypeDataFileSet(schema, instance => instanceFactory({
+    entityTypeDataFileSetTests.test(schema, instance => instanceFactory({
       entityTypes: instance,
       mappings: {}
     }), `${property}.entityTypes`)
