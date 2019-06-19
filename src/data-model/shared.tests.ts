@@ -1343,18 +1343,3 @@ export function testEntityTypeDataFileRow(
     "col__d:loc__a": `Test Value E`
   })))
 }
-
-export function testEntityTypeDataFile(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string
-): void {
-  run(emptyArrays, value => accepts(schema, instanceFactory(value)))
-  run(nonArrays, value => rejects(
-    schema, instanceFactory(value), property, `is not of a type(s) array`)
-  )
-  testEntityTypeDataFileRow(
-    schema, value => instanceFactory([value]), `${property}[0]`
-  )
-  describe(`multi-row`, () => accepts(schema, instanceFactory([{}, {}, {}])))
-}
