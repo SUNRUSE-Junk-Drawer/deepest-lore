@@ -834,21 +834,3 @@ export function testLabelPart(
   describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
   describe(`duplicate identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`])))
 }
-
-export function testLabel(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string
-): void {
-  run(nonArrays, value => rejects(
-    schema, instanceFactory(value), property, `is not of a type(s) array`
-  ))
-  run(emptyArrays, value => accepts(schema, instanceFactory(value)))
-  testLabelPart(schema, value => instanceFactory([value]), `${property}[0]`)
-  describe(`example`, () => accepts(schema, instanceFactory([
-    [`for_eg`, `la_run`, `mu_par`],
-    [],
-    [`just_1`],
-    [`long_w`, `2thetp`, `wanna_`, `depest`, `lore__`]
-  ])))
-}

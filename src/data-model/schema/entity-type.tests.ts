@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityType from "./entity-type"
 import * as shared from "./../shared.tests"
+import * as labelTests from "./label.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -53,7 +54,7 @@ export function test(
       plural: {},
       columns: {}
     }), property, `requires property "label"`))
-    shared.testLabel(schema, value => instanceFactory({
+    labelTests.test(schema, value => instanceFactory({
       singular: {},
       plural: {},
       label: value,
