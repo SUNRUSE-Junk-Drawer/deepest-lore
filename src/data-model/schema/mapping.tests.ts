@@ -3,6 +3,7 @@ import * as jsonschema from "jsonschema"
 import * as mapping from "./mapping"
 import * as shared from "./../shared.tests"
 import * as mappingKeySetTests from "./mapping-key-set.tests"
+import * as columnSetTests from "./column-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -33,7 +34,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       keys: {}
     }), property, `requires property "columns"`))
-    shared.testColumnSet(schema, value => instanceFactory({
+    columnSetTests.test(schema, value => instanceFactory({
       keys: {},
       columns: value
     }), `${property}.columns`)

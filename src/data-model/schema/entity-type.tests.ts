@@ -3,6 +3,7 @@ import * as jsonschema from "jsonschema"
 import * as entityType from "./entity-type"
 import * as shared from "./../shared.tests"
 import * as labelTests from "./label.tests"
+import * as columnSetTests from "./column-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -67,7 +68,7 @@ export function test(
       plural: {},
       label: []
     }), property, `requires property "columns"`))
-    shared.testColumnSet(schema, value => instanceFactory({
+    columnSetTests.test(schema, value => instanceFactory({
       singular: {},
       plural: {},
       label: [],
