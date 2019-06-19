@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingSet from "./mapping-set"
 import * as shared from "./../shared.tests"
+import * as mappingTests from "./mapping.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -18,7 +19,7 @@ export function test(
     keys: {},
     columns: {}
   })), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  shared.testMapping(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
+  mappingTests.test(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
   describe(`multiple columns`, () => shared.accepts(schema, instanceFactory({
     for_eg: {
       keys: {},

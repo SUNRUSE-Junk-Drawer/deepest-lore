@@ -1044,39 +1044,3 @@ export function testMappingKeySet(
     }
   })))
 }
-
-export function testMapping(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string
-): void {
-  run(nonObjects, value => rejects(
-    schema, instanceFactory(value), property, `is not of a type(s) object`
-  ))
-  describe(`unexpected properties`, () => rejects(
-    schema,
-    instanceFactory({
-      keys: {},
-      columns: {},
-      unexpected: {}
-    }), property, `additionalProperty "unexpected" exists in instance when not allowed`
-  ))
-  describe(`keys`, () => {
-    describe(`missing`, () => rejects(schema, instanceFactory({
-      columns: {}
-    }), property, `requires property "keys"`))
-    testMappingKeySet(schema, value => instanceFactory({
-      keys: value,
-      columns: {}
-    }), `${property}.keys`)
-  })
-  describe(`columns`, () => {
-    describe(`missing`, () => rejects(schema, instanceFactory({
-      keys: {}
-    }), property, `requires property "columns"`))
-    testColumnSet(schema, value => instanceFactory({
-      keys: {},
-      columns: value
-    }), `${property}.columns`)
-  })
-}

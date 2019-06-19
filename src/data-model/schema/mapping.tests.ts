@@ -1,7 +1,44 @@
 import "jasmine"
+import * as jsonschema from "jsonschema"
 import * as mapping from "./mapping"
 import * as shared from "./../shared.tests"
 
+export function test(
+  schema: jsonschema.Schema,
+  instanceFactory: shared.InstanceFactory,
+  property: string
+): void {
+  shared.run(shared.nonObjects, value => shared.rejects(
+    schema, instanceFactory(value), property, `is not of a type(s) object`
+  ))
+  describe(`unexpected properties`, () => shared.rejects(
+    schema,
+    instanceFactory({
+      keys: {},
+      columns: {},
+      unexpected: {}
+    }), property, `additionalProperty "unexpected" exists in instance when not allowed`
+  ))
+  describe(`keys`, () => {
+    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      columns: {}
+    }), property, `requires property "keys"`))
+    shared.testMappingKeySet(schema, value => instanceFactory({
+      keys: value,
+      columns: {}
+    }), `${property}.keys`)
+  })
+  describe(`columns`, () => {
+    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      keys: {}
+    }), property, `requires property "columns"`))
+    shared.testColumnSet(schema, value => instanceFactory({
+      keys: {},
+      columns: value
+    }), `${property}.columns`)
+  })
+}
+
 describe(`mapping`, () => {
-  shared.testMapping(mapping.schema, instance => instance, `instance`)
+  test(mapping.schema, instance => instance, `instance`)
 })
