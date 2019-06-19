@@ -972,39 +972,3 @@ export function testEntityTypeSet(
     }
   })))
 }
-
-export function testMappingKey(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string
-): void {
-  run(nonObjects, value => rejects(
-    schema, instanceFactory(value), property, `is not of a type(s) object`
-  ))
-  describe(`unexpected properties`, () => rejects(
-    schema,
-    instanceFactory({
-      entityType: `for_eg`,
-      label: {},
-      unexpected: {}
-    }), property, `additionalProperty "unexpected" exists in instance when not allowed`
-  ))
-  describe(`entityType`, () => {
-    describe(`missing`, () => rejects(schema, instanceFactory({
-      label: {}
-    }), property, `requires property "entityType"`))
-    testIdentifier(schema, value => instanceFactory({
-      entityType: value,
-      label: {}
-    }), `${property}.entityType`)
-  })
-  describe(`label`, () => {
-    describe(`missing`, () => rejects(schema, instanceFactory({
-      entityType: `for_eg`
-    }), property, `requires property "label"`))
-    testLocalizedString(schema, value => instanceFactory({
-      entityType: `for_eg`,
-      label: value
-    }), `${property}.label`)
-  })
-}
