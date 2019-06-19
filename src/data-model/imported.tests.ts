@@ -1,6 +1,7 @@
 import "jasmine"
 import * as imported from "./imported"
 import * as shared from "./shared.tests"
+import * as csvDataTests from "./csv/data.tests"
 
 describe(`imported`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -47,7 +48,7 @@ describe(`imported`, () => {
         mappings: {}
       }
     }, `instance`, `requires property "data"`))
-    shared.testData(imported.schema, instance => ({
+    csvDataTests.test(imported.schema, instance => ({
       schema: {
         localizations: [],
         localizationName: {},
