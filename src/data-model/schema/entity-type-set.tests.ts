@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityTypeSet from "./entity-type-set"
 import * as shared from "./../shared.tests"
+import * as entityTypeTests from "./entity-type.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -22,7 +23,7 @@ export function test(
     label: [],
     columns: {}
   })), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  shared.testEntityType(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
+  entityTypeTests.test(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
   describe(`multiple columns`, () => shared.accepts(schema, instanceFactory({
     for_eg: {
       singular: {},
