@@ -1,11 +1,11 @@
 import * as fs from "fs"
 import * as path from "path"
 import * as neatCsv from "neat-csv"
-import * as schema from "./schema/schema"
-import * as entityTypeDataFile from "./csv/entity-type-data-file"
-import * as entityTypeDataFileSet from "./csv/entity-type-data-file-set"
-import * as data from "./csv/data"
-import * as imported from "./imported"
+import * as schema from "./data-model/schema/schema"
+import * as entityTypeDataFile from "./data-model/csv/entity-type-data-file"
+import * as entityTypeDataFileSet from "./data-model/csv/entity-type-data-file-set"
+import * as data from "./data-model/csv/data"
+import * as imported from "./data-model/imported"
 
 export default async function (
   basePath: string
