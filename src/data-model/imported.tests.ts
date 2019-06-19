@@ -1,6 +1,7 @@
 import "jasmine"
 import * as imported from "./imported"
 import * as shared from "./shared.tests"
+import * as schemaSchemaTests from "./schema/schema.tests"
 import * as csvDataTests from "./csv/data.tests"
 
 describe(`imported`, () => {
@@ -29,7 +30,7 @@ describe(`imported`, () => {
         mappings: {}
       }
     }, `instance`, `requires property "schema"`))
-    shared.testSchema(imported.schema, instance => ({
+    schemaSchemaTests.test(imported.schema, instance => ({
       schema: instance,
       data: {
         entityTypes: {},
