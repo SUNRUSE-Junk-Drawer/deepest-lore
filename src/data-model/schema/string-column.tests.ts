@@ -1,6 +1,7 @@
 import "jasmine"
 import * as stringColumn from "./string-column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`string column`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -44,7 +45,7 @@ describe(`string column`, () => {
       maximumLength: 1,
       default: {},
     }, `instance`, `requires property "label"`))
-    shared.testLocalizedString(stringColumn.schema, instance => ({
+    sharedLocalizedStringTests.test(stringColumn.schema, instance => ({
       type: `string`,
       label: instance,
       maximumLength: 1,
@@ -100,7 +101,7 @@ describe(`string column`, () => {
       label: {},
       maximumLength: 1
     }, `instance`, `requires property "default"`))
-    shared.testLocalizedString(stringColumn.schema, value => ({
+    sharedLocalizedStringTests.test(stringColumn.schema, value => ({
       type: `string`,
       label: {},
       maximumLength: 1,

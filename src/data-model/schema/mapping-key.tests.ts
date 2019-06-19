@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingKey from "./mapping-key"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -32,7 +33,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       entityType: `for_eg`
     }), property, `requires property "label"`))
-    shared.testLocalizedString(schema, value => instanceFactory({
+    sharedLocalizedStringTests.test(schema, value => instanceFactory({
       entityType: `for_eg`,
       label: value
     }), `${property}.label`)

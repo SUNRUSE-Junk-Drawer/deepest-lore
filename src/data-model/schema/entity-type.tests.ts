@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityType from "./entity-type"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 import * as labelTests from "./label.tests"
 import * as columnSetTests from "./column-set.tests"
 
@@ -29,7 +30,7 @@ export function test(
       label: [],
       columns: {}
     }), property, `requires property "singular"`))
-    shared.testLocalizedString(schema, value => instanceFactory({
+    sharedLocalizedStringTests.test(schema, value => instanceFactory({
       singular: value,
       plural: {},
       label: [],
@@ -42,7 +43,7 @@ export function test(
       label: [],
       columns: {}
     }), property, `requires property "plural"`))
-    shared.testLocalizedString(schema, value => instanceFactory({
+    sharedLocalizedStringTests.test(schema, value => instanceFactory({
       singular: {},
       plural: value,
       label: [],

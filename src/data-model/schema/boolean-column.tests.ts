@@ -1,6 +1,7 @@
 import "jasmine"
 import * as booleanColumn from "./boolean-column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`boolean column`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -39,7 +40,7 @@ describe(`boolean column`, () => {
       type: `boolean`,
       default: false
     }, `instance`, `requires property "label"`))
-    shared.testLocalizedString(booleanColumn.schema, instance => ({
+    sharedLocalizedStringTests.test(booleanColumn.schema, instance => ({
       type: `boolean`,
       label: instance,
       default: false

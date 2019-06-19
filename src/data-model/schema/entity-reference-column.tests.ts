@@ -1,6 +1,7 @@
 import "jasmine"
 import * as entityReferenceColumn from "./entity-reference-column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`entity reference column`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -44,7 +45,7 @@ describe(`entity reference column`, () => {
       entityType: `enttyp`,
       default: `defalt`
     }, `instance`, `requires property "label"`))
-    shared.testLocalizedString(entityReferenceColumn.schema, instance => ({
+    sharedLocalizedStringTests.test(entityReferenceColumn.schema, instance => ({
       type: `entityReference`,
       label: instance,
       entityType: `enttyp`,

@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as column from "./column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -47,7 +48,7 @@ export function test(
         type: `boolean`,
         default: false
       }), property, message))
-      shared.testLocalizedString(schema, instance => instanceFactory({
+      sharedLocalizedStringTests.test(schema, instance => instanceFactory({
         type: `boolean`,
         label: instance,
         default: false
@@ -109,7 +110,7 @@ export function test(
         maximumLength: 1,
         default: {},
       }), property, message))
-      shared.testLocalizedString(schema, instance => instanceFactory({
+      sharedLocalizedStringTests.test(schema, instance => instanceFactory({
         type: `string`,
         label: instance,
         maximumLength: 1,
@@ -159,7 +160,7 @@ export function test(
         label: {},
         maximumLength: 1
       }), property, message))
-      shared.testLocalizedString(schema, value => instanceFactory({
+      sharedLocalizedStringTests.test(schema, value => instanceFactory({
         type: `string`,
         label: {},
         maximumLength: 1,
@@ -206,7 +207,7 @@ export function test(
         entityType: `enttyp`,
         default: `defalt`
       }), property, message))
-      shared.testLocalizedString(schema, instance => instanceFactory({
+      sharedLocalizedStringTests.test(schema, instance => instanceFactory({
         type: `entityReference`,
         label: instance,
         entityType: `enttyp`,
@@ -284,7 +285,7 @@ export function test(
         maximum: 0,
         default: 0
       }), property, message))
-      shared.testLocalizedString(schema, instance => instanceFactory({
+      sharedLocalizedStringTests.test(schema, instance => instanceFactory({
         type: `integer`,
         label: instance,
         minimum: 0,
@@ -403,7 +404,7 @@ export function test(
         maximum: 0.1,
         default: 0.1
       }), property, message))
-      shared.testLocalizedString(schema, instance => instanceFactory({
+      sharedLocalizedStringTests.test(schema, instance => instanceFactory({
         type: `float`,
         label: instance,
         minimum: 0.1,

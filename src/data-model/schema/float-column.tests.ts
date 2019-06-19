@@ -1,6 +1,7 @@
 import "jasmine"
 import * as floatColumn from "./float-column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`float column`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -49,7 +50,7 @@ describe(`float column`, () => {
       maximum: 0,
       default: 0
     }, `instance`, `requires property "label"`))
-    shared.testLocalizedString(floatColumn.schema, instance => ({
+    sharedLocalizedStringTests.test(floatColumn.schema, instance => ({
       type: `float`,
       label: instance,
       minimum: 0,

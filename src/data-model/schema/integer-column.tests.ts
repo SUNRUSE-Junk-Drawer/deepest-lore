@@ -1,6 +1,7 @@
 import "jasmine"
 import * as integerColumn from "./integer-column"
 import * as shared from "./../shared.tests"
+import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`integer column`, () => {
   shared.run(shared.nonObjects, value => shared.rejects(
@@ -49,7 +50,7 @@ describe(`integer column`, () => {
       maximum: 0,
       default: 0
     }, `instance`, `requires property "label"`))
-    shared.testLocalizedString(integerColumn.schema, instance => ({
+    sharedLocalizedStringTests.test(integerColumn.schema, instance => ({
       type: `integer`,
       label: instance,
       minimum: 0,

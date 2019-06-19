@@ -281,23 +281,3 @@ export function testIdentifierSet(
   describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
   describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`]), property, allMessagesReplacedWith || `contains duplicate item`))
 }
-
-export function testLocalizedString(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string,
-  useExactProperty?: boolean,
-  allMessagesReplacedWith?: string
-): void {
-  run(nonObjects, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) object`))
-  run(emptyObjects, value => accepts(schema, instanceFactory(value)))
-  run(identifierStrings, value => accepts(schema, instanceFactory(keyValue(value, `Test String`))))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(keyValue(value, `Test String`)), property, allMessagesReplacedWith || `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  run(nonStrings, value => rejects(schema, instanceFactory(keyValue(`for_eg`, value)), useExactProperty ? property : `${property}.for_eg`, allMessagesReplacedWith || `is not of a type(s) string`))
-  describe(`multiple strings`, () => accepts(schema, instanceFactory({
-    for_eg: `Test String A`,
-    oth_id: `Test String B`,
-    anther: `Test String C`,
-    lastid: `Test String D`
-  })))
-}
