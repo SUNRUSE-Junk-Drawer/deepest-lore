@@ -254,14 +254,3 @@ export const nonStrings = combinationOf(booleans, nulls, floats, emptyArrays, em
 export const nonBooleans = combinationOf(strings, nulls, floats, emptyArrays, emptyObjects)
 export const nonIntegers = combinationOf(strings, booleans, nulls, positiveFloats, negativeFloats, emptyArrays, emptyObjects)
 export const nonFloats = combinationOf(strings, booleans, nulls, emptyArrays, emptyObjects)
-
-export function testIdentifier(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string,
-  allMessagesReplacedWith?: string
-): void {
-  run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `does not match pattern "^[_a-z0-9]{6}$"`))
-  run(nonStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) string`))
-}

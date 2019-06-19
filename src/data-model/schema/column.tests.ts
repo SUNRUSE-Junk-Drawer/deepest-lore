@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as column from "./column"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierTests from "./../shared/identifier.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 export function test(
@@ -220,7 +221,7 @@ export function test(
         label: {},
         default: `defalt`
       }), property, message))
-      shared.testIdentifier(schema, value => instanceFactory({
+      sharedIdentifierTests.test(schema, value => instanceFactory({
         type: `entityReference`,
         label: {},
         entityType: value,
@@ -233,7 +234,7 @@ export function test(
         label: {},
         entityType: `enttyp`
       }), property, message))
-      shared.testIdentifier(schema, value => instanceFactory({
+      sharedIdentifierTests.test(schema, value => instanceFactory({
         type: `entityReference`,
         label: {},
         entityType: `enttyp`,

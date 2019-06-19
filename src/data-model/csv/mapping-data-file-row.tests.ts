@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingDataFileRow from "./mapping-data-file-row"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierTests from "./../shared/identifier.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -24,7 +25,7 @@ export function test(
       property,
       `additionalProperty ${JSON.stringify(`$${key}`)} exists in instance when not allowed`
     ))
-    shared.run(shared.identifierStrings, key => shared.testIdentifier(
+    shared.run(shared.identifierStrings, key => sharedIdentifierTests.test(
       schema,
       value => instanceFactory(shared.keyValue(`$${key}`, value)),
       `${property}.$${key}`

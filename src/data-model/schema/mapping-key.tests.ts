@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingKey from "./mapping-key"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierTests from "./../shared/identifier.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 export function test(
@@ -24,7 +25,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       label: {}
     }), property, `requires property "entityType"`))
-    shared.testIdentifier(schema, value => instanceFactory({
+    sharedIdentifierTests.test(schema, value => instanceFactory({
       entityType: value,
       label: {}
     }), `${property}.entityType`)

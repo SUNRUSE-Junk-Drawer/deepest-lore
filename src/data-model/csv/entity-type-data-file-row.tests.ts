@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityTypeDataFileRow from "./entity-type-data-file-row"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierTests from "./../shared/identifier.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -11,7 +12,7 @@ export function test(
   shared.run(shared.nonObjects, value => shared.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) object`
   ))
-  describe(`primary key`, () => shared.testIdentifier(
+  describe(`primary key`, () => sharedIdentifierTests.test(
     schema,
     value => instanceFactory(shared.keyValue(`$`, value)),
     `${property}.$`

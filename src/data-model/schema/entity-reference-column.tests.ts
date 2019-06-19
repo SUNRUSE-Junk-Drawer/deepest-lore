@@ -1,6 +1,7 @@
 import "jasmine"
 import * as entityReferenceColumn from "./entity-reference-column"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierTests from "./../shared/identifier.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`entity reference column`, () => {
@@ -58,7 +59,7 @@ describe(`entity reference column`, () => {
       label: {},
       default: `defalt`
     }, `instance`, `requires property "entityType"`))
-    shared.testIdentifier(entityReferenceColumn.schema, value => ({
+    sharedIdentifierTests.test(entityReferenceColumn.schema, value => ({
       type: `entityReference`,
       label: {},
       entityType: value,
@@ -71,7 +72,7 @@ describe(`entity reference column`, () => {
       label: {},
       entityType: `enttyp`
     }, `instance`, `requires property "default"`))
-    shared.testIdentifier(entityReferenceColumn.schema, value => ({
+    sharedIdentifierTests.test(entityReferenceColumn.schema, value => ({
       type: `entityReference`,
       label: {},
       entityType: `enttyp`,
