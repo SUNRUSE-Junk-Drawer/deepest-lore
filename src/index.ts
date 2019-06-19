@@ -91,37 +91,37 @@ export {
 export {
   schema as entityTypeDataFileRow,
   Type as EntityTypeDataFileRow
-} from "./data/entity-type-data-file-row"
+} from "./csv/entity-type-data-file-row"
 
 export {
   schema as entityTypeDataFile,
   Type as EntityTypeDataFile
-} from "./data/entity-type-data-file"
+} from "./csv/entity-type-data-file"
 
 export {
   schema as entityTypeDataFileSet,
   Type as EntityTypeDataFileSet
-} from "./data/entity-type-data-file-set"
+} from "./csv/entity-type-data-file-set"
 
 export {
   schema as mappingDataFileRow,
   Type as MappingDataFileRow
-} from "./data/mapping-data-file-row"
+} from "./csv/mapping-data-file-row"
 
 export {
   schema as mappingDataFile,
   Type as MappingDataFile
-} from "./data/mapping-data-file"
+} from "./csv/mapping-data-file"
 
 export {
   schema as mappingDataFileSet,
   Type as MappingDataFileSet
-} from "./data/mapping-data-file-set"
+} from "./csv/mapping-data-file-set"
 
 export {
   schema as data,
   Type as Data
-} from "./data/data"
+} from "./csv/data"
 
 export {
   schema as imported,
