@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as columnSet from "./column-set"
 import * as shared from "./../shared.tests"
+import * as columnTests from "./column.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -20,7 +21,7 @@ export function test(
     label: {},
     default: false
   })), property, `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`))
-  shared.testColumn(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
+  columnTests.test(schema, value => instanceFactory(shared.keyValue(`for_eg`, value)), `${property}.for_eg`)
   describe(`multiple columns`, () => shared.accepts(schema, instanceFactory({
     for_eg: {
       type: `boolean`,
