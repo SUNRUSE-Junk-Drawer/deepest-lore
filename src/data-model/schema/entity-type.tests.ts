@@ -1,20 +1,20 @@
 import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityType from "./entity-type"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 import * as labelTests from "./label.tests"
 import * as columnSetTests from "./column-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
-  instanceFactory: shared.InstanceFactory,
+  instanceFactory: sharedTests.InstanceFactory,
   property: string
 ): void {
-  shared.run(shared.nonObjects, value => shared.rejects(
+  sharedTests.run(sharedTests.nonObjects, value => sharedTests.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) object`
   ))
-  describe(`unexpected properties`, () => shared.rejects(
+  describe(`unexpected properties`, () => sharedTests.rejects(
     schema,
     instanceFactory({
       singular: {},
@@ -25,7 +25,7 @@ export function test(
     }), property, `additionalProperty "unexpected" exists in instance when not allowed`
   ))
   describe(`singular`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       plural: {},
       label: [],
       columns: {}
@@ -38,7 +38,7 @@ export function test(
     }), `${property}.singular`)
   })
   describe(`plural`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       singular: {},
       label: [],
       columns: {}
@@ -51,7 +51,7 @@ export function test(
     }), `${property}.plural`)
   })
   describe(`label`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       singular: {},
       plural: {},
       columns: {}
@@ -64,7 +64,7 @@ export function test(
     }), `${property}.label`)
   })
   describe(`columns`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       singular: {},
       plural: {},
       label: []

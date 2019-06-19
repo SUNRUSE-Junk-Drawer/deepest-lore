@@ -1,7 +1,7 @@
 import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as schema from "./schema"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as sharedIdentifierSetTests from "./../shared/identifier-set.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 import * as entityTypeSetTests from "./entity-type-set.tests"
@@ -9,13 +9,13 @@ import * as mappingSetTests from "./mapping-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
-  instanceFactory: shared.InstanceFactory,
+  instanceFactory: sharedTests.InstanceFactory,
   property: string
 ): void {
-  shared.run(shared.nonObjects, value => shared.rejects(
+  sharedTests.run(sharedTests.nonObjects, value => sharedTests.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) object`
   ))
-  describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+  describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
     localizations: [],
     localizationName: {},
     title: {},
@@ -25,7 +25,7 @@ export function test(
     unexpected: {}
   }), property, `additionalProperty "unexpected" exists in instance when not allowed`))
   describe(`localizations`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizationName: {},
       title: {},
       description: {},
@@ -42,7 +42,7 @@ export function test(
     }), `${property}.localizations`)
   })
   describe(`localizationName`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizations: [],
       title: {},
       description: {},
@@ -59,7 +59,7 @@ export function test(
     }), `${property}.localizationName`)
   })
   describe(`title`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizations: [],
       localizationName: {},
       description: {},
@@ -76,7 +76,7 @@ export function test(
     }), `${property}.title`)
   })
   describe(`description`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizations: [],
       localizationName: {},
       title: {},
@@ -93,7 +93,7 @@ export function test(
     }), `${property}.description`)
   })
   describe(`entityTypes`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizations: [],
       localizationName: {},
       title: {},
@@ -110,7 +110,7 @@ export function test(
     }), `${property}.entityTypes`)
   })
   describe(`mappings`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       localizations: [],
       localizationName: {},
       title: {},

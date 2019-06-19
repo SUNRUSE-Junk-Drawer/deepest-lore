@@ -1,13 +1,13 @@
 import "jasmine"
 import * as stringColumn from "./string-column"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`string column`, () => {
-  shared.run(shared.nonObjects, value => shared.rejects(
+  sharedTests.run(sharedTests.nonObjects, value => sharedTests.rejects(
     stringColumn.schema, value, `instance`, `is not of a type(s) object`
   ))
-  describe(`unexpected properties`, () => shared.rejects(stringColumn.schema, {
+  describe(`unexpected properties`, () => sharedTests.rejects(stringColumn.schema, {
     type: `string`,
     label: {},
     maximumLength: 1,
@@ -15,23 +15,23 @@ describe(`string column`, () => {
     unexpected: {}
   }, `instance`, `additionalProperty "unexpected" exists in instance when not allowed`))
   describe(`type`, () => {
-    describe(`missing`, () => shared.rejects(stringColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(stringColumn.schema, {
       label: {},
       maximumLength: 1,
       default: {},
     }, `instance`, `requires property "type"`))
-    shared.run(shared.nonStrings, value => shared.rejects(stringColumn.schema, {
+    sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(stringColumn.schema, {
       type: value,
       label: {},
       maximumLength: 1,
       default: {},
     }, `instance.type`, `is not one of enum values: string`))
-    shared.run(
-      shared.combinationOf(
-        shared.strings,
-        shared.setOf(`boolean`, `integer`, `float`, `entityReference`)
+    sharedTests.run(
+      sharedTests.combinationOf(
+        sharedTests.strings,
+        sharedTests.setOf(`boolean`, `integer`, `float`, `entityReference`)
       ),
-      value => shared.rejects(stringColumn.schema, {
+      value => sharedTests.rejects(stringColumn.schema, {
         type: value,
         label: {},
         maximumLength: 1,
@@ -40,7 +40,7 @@ describe(`string column`, () => {
     )
   })
   describe(`label`, () => {
-    describe(`missing`, () => shared.rejects(stringColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(stringColumn.schema, {
       type: `string`,
       maximumLength: 1,
       default: {},
@@ -53,20 +53,20 @@ describe(`string column`, () => {
     }), `instance.label`)
   })
   describe(`maximumLength`, () => {
-    describe(`missing`, () => shared.rejects(stringColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(stringColumn.schema, {
       type: `string`,
       label: {},
       default: {}
     }, `instance`, `requires property "maximumLength"`))
-    shared.run(shared.nonFloats, value => shared.rejects(stringColumn.schema, {
+    sharedTests.run(sharedTests.nonFloats, value => sharedTests.rejects(stringColumn.schema, {
       type: `string`,
       label: {},
       maximumLength: value,
       default: {}
     }, `instance.maximumLength`, `is not of a type(s) integer`))
-    shared.run(
-      shared.combinationOf(shared.negativeFloats),
-      value => shared.rejectsMany(stringColumn.schema, {
+    sharedTests.run(
+      sharedTests.combinationOf(sharedTests.negativeFloats),
+      value => sharedTests.rejectsMany(stringColumn.schema, {
         type: `string`,
         label: {},
         maximumLength: value,
@@ -79,16 +79,16 @@ describe(`string column`, () => {
         message: `must have a minimum value of 1`
       }])
     )
-    shared.run(
-      shared.combinationOf(shared.zeroes, shared.negativeIntegers),
-      value => shared.rejects(stringColumn.schema, {
+    sharedTests.run(
+      sharedTests.combinationOf(sharedTests.zeroes, sharedTests.negativeIntegers),
+      value => sharedTests.rejects(stringColumn.schema, {
         type: `string`,
         label: {},
         maximumLength: value,
         default: {}
       }, `instance.maximumLength`, `must have a minimum value of 1`)
     )
-    shared.run(shared.positiveIntegers, value => shared.accepts(stringColumn.schema, {
+    sharedTests.run(sharedTests.positiveIntegers, value => sharedTests.accepts(stringColumn.schema, {
       type: `string`,
       label: {},
       maximumLength: value,
@@ -96,7 +96,7 @@ describe(`string column`, () => {
     }))
   })
   describe(`default`, () => {
-    describe(`missing`, () => shared.rejects(stringColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(stringColumn.schema, {
       type: `string`,
       label: {},
       maximumLength: 1

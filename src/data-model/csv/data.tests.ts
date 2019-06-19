@@ -1,25 +1,25 @@
 import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as data from "./data"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as entityTypeDataFileSetTests from "./entity-type-data-file-set.tests"
 import * as mappingDataFileSetTests from "./mapping-data-file-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
-  instanceFactory: shared.InstanceFactory,
+  instanceFactory: sharedTests.InstanceFactory,
   property: string
 ): void {
-  shared.run(shared.nonObjects, value => shared.rejects(
+  sharedTests.run(sharedTests.nonObjects, value => sharedTests.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) object`
   ))
-  describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+  describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
     entityTypes: {},
     mappings: {},
     unexpected: {}
   }), property, `additionalProperty "unexpected" exists in instance when not allowed`))
   describe(`entityTypes`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       mappings: {}
     }), property, `requires property "entityTypes"`))
     entityTypeDataFileSetTests.test(schema, instance => instanceFactory({
@@ -28,7 +28,7 @@ export function test(
     }), `${property}.entityTypes`)
   })
   describe(`mappings`, () => {
-    describe(`missing`, () => shared.rejects(schema, instanceFactory({
+    describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
       entityTypes: {}
     }), property, `requires property "mappings"`))
     mappingDataFileSetTests.test(schema, instance => instanceFactory({

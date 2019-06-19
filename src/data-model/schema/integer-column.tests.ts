@@ -1,13 +1,13 @@
 import "jasmine"
 import * as integerColumn from "./integer-column"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 describe(`integer column`, () => {
-  shared.run(shared.nonObjects, value => shared.rejects(
+  sharedTests.run(sharedTests.nonObjects, value => sharedTests.rejects(
     integerColumn.schema, value, `instance`, `is not of a type(s) object`
   ))
-  describe(`unexpected properties`, () => shared.rejects(integerColumn.schema, {
+  describe(`unexpected properties`, () => sharedTests.rejects(integerColumn.schema, {
     type: `integer`,
     label: {},
     minimum: 0,
@@ -16,25 +16,25 @@ describe(`integer column`, () => {
     unexpected: {}
   }, `instance`, `additionalProperty "unexpected" exists in instance when not allowed`))
   describe(`type`, () => {
-    describe(`missing`, () => shared.rejects(integerColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(integerColumn.schema, {
       label: {},
       minimum: 0,
       maximum: 0,
       default: 0
     }, `instance`, `requires property "type"`))
-    shared.run(shared.nonStrings, value => shared.rejects(integerColumn.schema, {
+    sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(integerColumn.schema, {
       type: value,
       label: {},
       minimum: 0,
       maximum: 0,
       default: 0
     }, `instance.type`, `is not one of enum values: integer`))
-    shared.run(
-      shared.combinationOf(
-        shared.strings,
-        shared.setOf(`boolean`, `float`, `string`, `entityReference`)
+    sharedTests.run(
+      sharedTests.combinationOf(
+        sharedTests.strings,
+        sharedTests.setOf(`boolean`, `float`, `string`, `entityReference`)
       ),
-      value => shared.rejects(integerColumn.schema, {
+      value => sharedTests.rejects(integerColumn.schema, {
         type: value,
         label: {},
         minimum: 0,
@@ -44,7 +44,7 @@ describe(`integer column`, () => {
     )
   })
   describe(`label`, () => {
-    describe(`missing`, () => shared.rejects(integerColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       minimum: 0,
       maximum: 0,
@@ -59,20 +59,20 @@ describe(`integer column`, () => {
     }), `instance.label`)
   })
   describe(`minimum`, () => {
-    describe(`missing`, () => shared.rejects(integerColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       maximum: 0,
       default: 0
     }, `instance`, `requires property "minimum"`))
-    shared.run(shared.nonIntegers, value => shared.rejects(integerColumn.schema, {
+    sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: value,
       maximum: 0,
       default: 0
     }, `instance.minimum`, `is not of a type(s) integer`))
-    shared.run(shared.integers, value => shared.accepts(integerColumn.schema, {
+    sharedTests.run(sharedTests.integers, value => sharedTests.accepts(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: value,
@@ -81,20 +81,20 @@ describe(`integer column`, () => {
     }))
   })
   describe(`maximum`, () => {
-    describe(`missing`, () => shared.rejects(integerColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,
       default: 0
     }, `instance`, `requires property "maximum"`))
-    shared.run(shared.nonIntegers, value => shared.rejects(integerColumn.schema, {
+    sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,
       maximum: value,
       default: 0
     }, `instance.maximum`, `is not of a type(s) integer`))
-    shared.run(shared.integers, value => shared.accepts(integerColumn.schema, {
+    sharedTests.run(sharedTests.integers, value => sharedTests.accepts(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,
@@ -103,20 +103,20 @@ describe(`integer column`, () => {
     }))
   })
   describe(`default`, () => {
-    describe(`missing`, () => shared.rejects(integerColumn.schema, {
+    describe(`missing`, () => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,
       maximum: 0
     }, `instance`, `requires property "default"`))
-    shared.run(shared.nonIntegers, value => shared.rejects(integerColumn.schema, {
+    sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,
       maximum: 0,
       default: value
     }, `instance.default`, `is not of a type(s) integer`))
-    shared.run(shared.integers, value => shared.accepts(integerColumn.schema, {
+    sharedTests.run(sharedTests.integers, value => sharedTests.accepts(integerColumn.schema, {
       type: `integer`,
       label: {},
       minimum: 0,

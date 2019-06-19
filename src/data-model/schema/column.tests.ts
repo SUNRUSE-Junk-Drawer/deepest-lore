@@ -1,43 +1,43 @@
 import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as column from "./column"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as sharedIdentifierTests from "./../shared/identifier.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 
 export function test(
   schema: jsonschema.Schema,
-  instanceFactory: shared.InstanceFactory,
+  instanceFactory: sharedTests.InstanceFactory,
   property: string
 ): void {
   const message = `is not exactly one from [subschema 0],[subschema 1],[subschema 2],[subschema 3],[subschema 4]`
-  shared.run(
-    shared.nonObjects,
-    value => shared.rejects(schema, instanceFactory(value), property, message)
+  sharedTests.run(
+    sharedTests.nonObjects,
+    value => sharedTests.rejects(schema, instanceFactory(value), property, message)
   )
   describe(`boolean`, () => {
-    describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+    describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
       type: `boolean`,
       label: {},
       default: false,
       unexpected: {}
     }), property, message))
     describe(`type`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         label: {},
         default: false
       }), property, message))
-      shared.run(shared.nonStrings, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(schema, instanceFactory({
         type: value,
         label: {},
         default: false
       }), property, message))
-      shared.run(
-        shared.combinationOf(
-          shared.strings,
-          shared.setOf(`integer`, `float`, `string`, `entityReference`)
+      sharedTests.run(
+        sharedTests.combinationOf(
+          sharedTests.strings,
+          sharedTests.setOf(`integer`, `float`, `string`, `entityReference`)
         ),
-        value => shared.rejects(schema, instanceFactory({
+        value => sharedTests.rejects(schema, instanceFactory({
           type: value,
           label: {},
           default: false
@@ -45,7 +45,7 @@ export function test(
       )
     })
     describe(`label`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `boolean`,
         default: false
       }), property, message))
@@ -56,16 +56,16 @@ export function test(
       }), property, true, message)
     })
     describe(`default`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `boolean`,
         label: {}
       }), property, message))
-      shared.run(shared.nonBooleans, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonBooleans, value => sharedTests.rejects(schema, instanceFactory({
         type: `boolean`,
         label: {},
         default: value
       }), property, message))
-      shared.run(shared.booleans, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.booleans, value => sharedTests.accepts(schema, instanceFactory({
         type: `boolean`,
         label: {},
         default: value
@@ -73,7 +73,7 @@ export function test(
     })
   })
   describe(`string`, () => {
-    describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+    describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
       type: `string`,
       label: {},
       maximumLength: 1,
@@ -81,23 +81,23 @@ export function test(
       unexpected: {}
     }), property, message))
     describe(`type`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         label: {},
         maximumLength: 1,
         default: {},
       }), property, message))
-      shared.run(shared.nonStrings, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(schema, instanceFactory({
         type: value,
         label: {},
         maximumLength: 1,
         default: {},
       }), property, message))
-      shared.run(
-        shared.combinationOf(
-          shared.strings,
-          shared.setOf(`boolean`, `integer`, `float`, `entityReference`)
+      sharedTests.run(
+        sharedTests.combinationOf(
+          sharedTests.strings,
+          sharedTests.setOf(`boolean`, `integer`, `float`, `entityReference`)
         ),
-        value => shared.rejects(schema, instanceFactory({
+        value => sharedTests.rejects(schema, instanceFactory({
           type: value,
           label: {},
           maximumLength: 1,
@@ -106,7 +106,7 @@ export function test(
       )
     })
     describe(`label`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `string`,
         maximumLength: 1,
         default: {},
@@ -119,36 +119,36 @@ export function test(
       }), property, true, message)
     })
     describe(`maximumLength`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `string`,
         label: {},
         default: {}
       }), property, message))
-      shared.run(shared.nonFloats, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonFloats, value => sharedTests.rejects(schema, instanceFactory({
         type: `string`,
         label: {},
         maximumLength: value,
         default: {}
       }), property, message))
-      shared.run(
-        shared.combinationOf(shared.negativeFloats),
-        value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(
+        sharedTests.combinationOf(sharedTests.negativeFloats),
+        value => sharedTests.rejects(schema, instanceFactory({
           type: `string`,
           label: {},
           maximumLength: value,
           default: {}
         }), property, message)
       )
-      shared.run(
-        shared.combinationOf(shared.zeroes, shared.negativeIntegers),
-        value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(
+        sharedTests.combinationOf(sharedTests.zeroes, sharedTests.negativeIntegers),
+        value => sharedTests.rejects(schema, instanceFactory({
           type: `string`,
           label: {},
           maximumLength: value,
           default: {}
         }), property, message)
       )
-      shared.run(shared.positiveIntegers, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.positiveIntegers, value => sharedTests.accepts(schema, instanceFactory({
         type: `string`,
         label: {},
         maximumLength: value,
@@ -156,7 +156,7 @@ export function test(
       })))
     })
     describe(`default`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `string`,
         label: {},
         maximumLength: 1
@@ -170,7 +170,7 @@ export function test(
     })
   })
   describe(`entity reference`, () => {
-    describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+    describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
       type: `entityReference`,
       label: {},
       entityType: `enttyp`,
@@ -178,23 +178,23 @@ export function test(
       unexpected: {}
     }), property, message))
     describe(`type`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         label: {},
         entityType: `enttyp`,
         default: `defalt`
       }), property, message))
-      shared.run(shared.nonStrings, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(schema, instanceFactory({
         type: value,
         label: {},
         entityType: `enttyp`,
         default: `defalt`
       }), property, message))
-      shared.run(
-        shared.combinationOf(
-          shared.strings,
-          shared.setOf(`boolean`, `integer`, `float`, `string`)
+      sharedTests.run(
+        sharedTests.combinationOf(
+          sharedTests.strings,
+          sharedTests.setOf(`boolean`, `integer`, `float`, `string`)
         ),
-        value => shared.rejects(schema, instanceFactory({
+        value => sharedTests.rejects(schema, instanceFactory({
           type: value,
           label: {},
           entityType: `enttyp`,
@@ -203,7 +203,7 @@ export function test(
       )
     })
     describe(`label`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `entityReference`,
         entityType: `enttyp`,
         default: `defalt`
@@ -216,7 +216,7 @@ export function test(
       }), property, true, message)
     })
     describe(`entityType`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `entityReference`,
         label: {},
         default: `defalt`
@@ -229,7 +229,7 @@ export function test(
       }), property, message)
     })
     describe(`default`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `entityReference`,
         label: {},
         entityType: `enttyp`
@@ -243,7 +243,7 @@ export function test(
     })
   })
   describe(`integer`, () => {
-    describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+    describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
       type: `integer`,
       label: {},
       minimum: 0,
@@ -252,25 +252,25 @@ export function test(
       unexpected: {}
     }), property, message))
     describe(`type`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         label: {},
         minimum: 0,
         maximum: 0,
         default: 0
       }), property, message))
-      shared.run(shared.nonStrings, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(schema, instanceFactory({
         type: value,
         label: {},
         minimum: 0,
         maximum: 0,
         default: 0
       }), property, message))
-      shared.run(
-        shared.combinationOf(
-          shared.strings,
-          shared.setOf(`boolean`, `string`, `entityReference`)
+      sharedTests.run(
+        sharedTests.combinationOf(
+          sharedTests.strings,
+          sharedTests.setOf(`boolean`, `string`, `entityReference`)
         ),
-        value => shared.rejects(schema, instanceFactory({
+        value => sharedTests.rejects(schema, instanceFactory({
           type: value,
           label: {},
           minimum: 0,
@@ -280,7 +280,7 @@ export function test(
       )
     })
     describe(`label`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         minimum: 0,
         maximum: 0,
@@ -295,20 +295,20 @@ export function test(
       }), property, true, message)
     })
     describe(`minimum`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         maximum: 0,
         default: 0
       }), property, message))
-      shared.run(shared.nonIntegers, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: value,
         maximum: 0,
         default: 0
       }), property, message))
-      shared.run(shared.integers, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.integers, value => sharedTests.accepts(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: value,
@@ -317,20 +317,20 @@ export function test(
       })))
     })
     describe(`maximum`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
         default: 0
       }), property, message))
-      shared.run(shared.nonIntegers, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
         maximum: value,
         default: 0
       }), property, message))
-      shared.run(shared.integers, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.integers, value => sharedTests.accepts(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
@@ -339,20 +339,20 @@ export function test(
       })))
     })
     describe(`default`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
         maximum: 0
       }), property, message))
-      shared.run(shared.nonIntegers, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonIntegers, value => sharedTests.rejects(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
         maximum: 0,
         default: value
       }), property, message))
-      shared.run(shared.integers, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.integers, value => sharedTests.accepts(schema, instanceFactory({
         type: `integer`,
         label: {},
         minimum: 0,
@@ -362,7 +362,7 @@ export function test(
     })
   })
   describe(`float`, () => {
-    describe(`unexpected properties`, () => shared.rejects(schema, instanceFactory({
+    describe(`unexpected properties`, () => sharedTests.rejects(schema, instanceFactory({
       type: `float`,
       label: {},
       minimum: 0.1,
@@ -371,25 +371,25 @@ export function test(
       unexpected: {}
     }), property, message))
     describe(`type`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         label: {},
         minimum: 0.1,
         maximum: 0.1,
         default: 0.1
       }), property, message))
-      shared.run(shared.nonStrings, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonStrings, value => sharedTests.rejects(schema, instanceFactory({
         type: value,
         label: {},
         minimum: 0.1,
         maximum: 0.1,
         default: 0.1
       }), property, message))
-      shared.run(
-        shared.combinationOf(
-          shared.strings,
-          shared.setOf(`boolean`, `integer`, `string`, `entityReference`)
+      sharedTests.run(
+        sharedTests.combinationOf(
+          sharedTests.strings,
+          sharedTests.setOf(`boolean`, `integer`, `string`, `entityReference`)
         ),
-        value => shared.rejects(schema, instanceFactory({
+        value => sharedTests.rejects(schema, instanceFactory({
           type: value,
           label: {},
           minimum: 0.1,
@@ -399,7 +399,7 @@ export function test(
       )
     })
     describe(`label`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         minimum: 0.1,
         maximum: 0.1,
@@ -414,20 +414,20 @@ export function test(
       }), property, true, message)
     })
     describe(`minimum`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         maximum: 0.1,
         default: 0.1
       }), property, message))
-      shared.run(shared.nonFloats, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonFloats, value => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: value,
         maximum: 0.1,
         default: 0.1
       }), property, message))
-      shared.run(shared.floats, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.floats, value => sharedTests.accepts(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: value,
@@ -436,20 +436,20 @@ export function test(
       })))
     })
     describe(`maximum`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,
         default: 0.1
       }), property, message))
-      shared.run(shared.nonFloats, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonFloats, value => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,
         maximum: value,
         default: 0.1
       }), property, message))
-      shared.run(shared.floats, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.floats, value => sharedTests.accepts(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,
@@ -458,20 +458,20 @@ export function test(
       })))
     })
     describe(`default`, () => {
-      describe(`missing`, () => shared.rejects(schema, instanceFactory({
+      describe(`missing`, () => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,
         maximum: 0.1
       }), property, message))
-      shared.run(shared.nonFloats, value => shared.rejects(schema, instanceFactory({
+      sharedTests.run(sharedTests.nonFloats, value => sharedTests.rejects(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,
         maximum: 0.1,
         default: value
       }), property, message))
-      shared.run(shared.floats, value => shared.accepts(schema, instanceFactory({
+      sharedTests.run(sharedTests.floats, value => sharedTests.accepts(schema, instanceFactory({
         type: `float`,
         label: {},
         minimum: 0.1,

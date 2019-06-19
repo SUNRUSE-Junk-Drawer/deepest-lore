@@ -1,22 +1,22 @@
 import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as entityTypeDataFile from "./entity-type-data-file"
-import * as shared from "./../shared.tests"
+import * as sharedTests from "./../shared.tests"
 import * as entityTypeDataFileRowTests from "./entity-type-data-file-row.tests"
 
 export function test(
   schema: jsonschema.Schema,
-  instanceFactory: shared.InstanceFactory,
+  instanceFactory: sharedTests.InstanceFactory,
   property: string
 ): void {
-  shared.run(shared.emptyArrays, value => shared.accepts(schema, instanceFactory(value)))
-  shared.run(shared.nonArrays, value => shared.rejects(
+  sharedTests.run(sharedTests.emptyArrays, value => sharedTests.accepts(schema, instanceFactory(value)))
+  sharedTests.run(sharedTests.nonArrays, value => sharedTests.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) array`)
   )
   entityTypeDataFileRowTests.test(
     schema, value => instanceFactory([value]), `${property}[0]`
   )
-  describe(`multi-row`, () => shared.accepts(schema, instanceFactory([{}, {}, {}])))
+  describe(`multi-row`, () => sharedTests.accepts(schema, instanceFactory([{}, {}, {}])))
 }
 
 describe(`entity type data file row`, () => test(
