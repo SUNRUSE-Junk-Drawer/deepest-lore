@@ -265,19 +265,3 @@ export function testIdentifier(
   run(nonIdentifierStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `does not match pattern "^[_a-z0-9]{6}$"`))
   run(nonStrings, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) string`))
 }
-
-export function testIdentifierSet(
-  schema: jsonschema.Schema,
-  instanceFactory: InstanceFactory,
-  property: string,
-  useExactProperty?: boolean,
-  allMessagesReplacedWith?: string
-): void {
-  run(exhaustiveIdentifierStrings, value => accepts(schema, instanceFactory([value])))
-  run(emptyArrays, value => accepts(schema, instanceFactory(value)))
-  run(nonIdentifierStrings, value => rejects(schema, instanceFactory([value]), useExactProperty ? property : `${property}[0]`, allMessagesReplacedWith || `does not match pattern "^[_a-z0-9]{6}$"`))
-  run(nonStrings, value => rejects(schema, instanceFactory([value]), useExactProperty ? property : `${property}[0]`, allMessagesReplacedWith || `is not of a type(s) string`))
-  run(nonArrays, value => rejects(schema, instanceFactory(value), property, allMessagesReplacedWith || `is not of a type(s) array`))
-  describe(`multiple identifiers`, () => accepts(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `__this`])))
-  describe(`duplicate identifiers`, () => rejects(schema, instanceFactory([`for_eg`, `val_id`, `like__`, `val_id`, `__this`]), property, allMessagesReplacedWith || `contains duplicate item`))
-}

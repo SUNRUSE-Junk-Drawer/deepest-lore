@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as schema from "./schema"
 import * as shared from "./../shared.tests"
+import * as sharedIdentifierSetTests from "./../shared/identifier-set.tests"
 import * as sharedLocalizedStringTests from "./../shared/localized-string.tests"
 import * as entityTypeSetTests from "./entity-type-set.tests"
 import * as mappingSetTests from "./mapping-set.tests"
@@ -31,7 +32,7 @@ export function test(
       entityTypes: {},
       mappings: {}
     }), property, `requires property "localizations"`))
-    shared.testIdentifierSet(schema, instance => instanceFactory({
+    sharedIdentifierSetTests.test(schema, instance => instanceFactory({
       localizations: instance,
       localizationName: {},
       title: {},
