@@ -30,7 +30,8 @@
     "hyperapp-render": "^3.1.0",
     "jsonschema": "^1.2.4",
     "minimist": "1.2.0",
-    "neat-csv": "^5.0.0"
+    "neat-csv": "^5.0.0",
+    "rimraf": "^2.6.3"
   },
   "scripts": {
     "test": "npm-run-all test-clean test-typescript test-jasmine",
