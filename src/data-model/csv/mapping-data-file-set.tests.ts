@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingDataFileSet from "./mapping-data-file-set"
 import * as shared from "./../shared.tests"
+import * as mappingDataFileTests from "./mapping-data-file.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -25,7 +26,7 @@ export function test(
     property,
     `additionalProperty ${JSON.stringify(value)} exists in instance when not allowed`
   ))
-  shared.testMappingDataFile(
+  mappingDataFileTests.test(
     schema,
     value => instanceFactory(shared.keyValue(`for_eg`, value)),
     `${property}.for_eg`
