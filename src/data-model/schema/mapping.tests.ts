@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mapping from "./mapping"
 import * as shared from "./../shared.tests"
+import * as mappingKeySetTests from "./mapping-key-set.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -23,7 +24,7 @@ export function test(
     describe(`missing`, () => shared.rejects(schema, instanceFactory({
       columns: {}
     }), property, `requires property "keys"`))
-    shared.testMappingKeySet(schema, value => instanceFactory({
+    mappingKeySetTests.test(schema, value => instanceFactory({
       keys: value,
       columns: {}
     }), `${property}.keys`)
