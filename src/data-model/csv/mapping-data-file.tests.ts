@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as mappingDataFile from "./mapping-data-file"
 import * as shared from "./../shared.tests"
+import * as mappingDataFileRowTests from "./mapping-data-file-row.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -12,7 +13,7 @@ export function test(
   shared.run(shared.nonArrays, value => shared.rejects(
     schema, instanceFactory(value), property, `is not of a type(s) array`)
   )
-  shared.testMappingDataFileRow(
+  mappingDataFileRowTests.test(
     schema, value => instanceFactory([value]), `${property}[0]`
   )
   describe(`multi-row`, () => shared.accepts(schema, instanceFactory([{}, {}, {}])))
