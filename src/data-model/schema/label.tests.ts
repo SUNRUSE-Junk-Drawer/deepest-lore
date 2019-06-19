@@ -2,6 +2,7 @@ import "jasmine"
 import * as jsonschema from "jsonschema"
 import * as label from "./label"
 import * as shared from "./../shared.tests"
+import * as labelPartTests from "./label-part.tests"
 
 export function test(
   schema: jsonschema.Schema,
@@ -12,7 +13,7 @@ export function test(
     schema, instanceFactory(value), property, `is not of a type(s) array`
   ))
   shared.run(shared.emptyArrays, value => shared.accepts(schema, instanceFactory(value)))
-  shared.testLabelPart(schema, value => instanceFactory([value]), `${property}[0]`)
+  labelPartTests.test(schema, value => instanceFactory([value]), `${property}[0]`)
   describe(`example`, () => shared.accepts(schema, instanceFactory([
     [`for_eg`, `la_run`, `mu_par`],
     [],
